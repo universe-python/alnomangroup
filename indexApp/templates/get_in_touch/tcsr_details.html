@@ -1,0 +1,101 @@
+{% extends 'tbase.html' %}
+{% load static %}
+{% block title %}
+  {{ csr_details.title }}
+{% endblock title %}
+
+{% block content %}
+
+
+ <!-- Margin top -->
+ <div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">Corporate Social Responsibility</p>
+
+      <p class="pt-5 text-lg">
+        <a href="/">Home</a> > Corporate Social Responsibility
+      </p>
+    </div>
+  </div>
+  <div class="container mx-auto">
+    <!-- Image Gallery Section -->
+    <div class="relative">
+      {% for img in related_images %}
+        <div class="mySlides hidden">
+          <div class="absolute top-0 left-0 text-white text-xs p-2 bg-black bg-opacity-50">
+            1 / 6
+          </div>
+          {% if img.image %}
+            <img src="{{ img.image.url }}" class="w-full h-96 object-cover" alt="Image" />
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      {% comment %} <!-- Navigation Arrows -->
+      <a class="prev absolute top-1/2 left-0 text-white text-3xl p-4 cursor-pointer bg-black bg-opacity-50 transform -translate-y-1/2" onclick="plusSlides(-1)">❮</a>
+      <a class="next absolute top-1/2 right-0 text-white text-3xl p-4 cursor-pointer bg-black bg-opacity-50 transform -translate-y-1/2" onclick="plusSlides(1)">❯</a> {% endcomment %}
+
+      <!-- Thumbnail Images -->
+      <div class="flex space-x-2 mt-4">
+        {% for img in related_images %}
+          <div class="">
+            {% if img.image %}
+              <img class="demo cursor-pointer opacity-60 hover:opacity-100" src="{{ img.image.url }}" alt="Thumbnail" onclick="currentSlide({{ forloop.counter }})" />
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <script>
+      let slideIndex = 1;
+      showSlides(slideIndex);
+
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+
+      function showSlides(n) {
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("demo");
+        if (n > slides.length) slideIndex = 1;
+        if (n < 1) slideIndex = slides.length;
+        for (let i = 0; i < slides.length; i++) {
+          slides[i].classList.add('hidden');
+        }
+        for (let i = 0; i < dots.length; i++) {
+          dots[i].classList.remove("active");
+        }
+        slides[slideIndex - 1].classList.remove('hidden');
+        dots[slideIndex - 1].classList.add('active');
+      }
+    </script>
+
+    <!-- Product Details Section -->
+    <section id="services" class="services bg-gray-100 my-12">
+      <div class="container mx-auto">
+        <div class="flex flex-col md:flex-row">
+          <div class="w-full  px-4">
+            <div class="_product-detail-content bg-white p-6 border border-light-gray shadow-lg">
+              {% if csr_details.image %}
+                <img src="{{ csr_details.image.url }}" class="w-full h-96 object-cover" alt="" />
+              {% endif %}
+              <br /><br />
+              <p class="_p-name text-2xl font-semibold text-green-700 border-b-2 border-light-gray pb-3">{{ csr_details.title }}</p>
+              <div class="_p-price-box mt-4">
+                <div class="_p-features text-indigo-700">
+                  <span class="block">Service Details:</span>
+                  <p>{{ csr_details.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Blog
+{% endblock title %}
+
+{% block content %}
+
+<div class="blog-body content-area mt_blog">
+    <div class="container">
+        <div class="row">
+            <!-- <h1 style="text-align: center; font-weight:500;text-shadow: 0 0 red;margin-bottom: 30px; background-color:darkgray">BLOG</h1> -->
+            {% for blog in blog_query %}
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <!-- Blog 1 start -->
+                <div class="blog-1">
+                    <div class="blog-inner">
+                        <div class="blog-overflow">
+                            <div class="blog-photo">
+                                {% if blog.blog_img %}
+                                <img src="{{blog.blog_img.url}}" alt="blog-1" class="w-100" style="aspect-ratio: 2 / 1; object-fit: fill;">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="detail">
+                    <h3>
+                        <a href="{% url 'read-more' blog.id %}">{{blog.title}}!</a>
+                    </h3>
+                    <ul class="post-meta clearfix d-flex">
+                        <li style="padding-right:10px;">
+                            <i class="fa fa-user-o"></i> admin
+                        </li>
+                        <li>
+                            <i class="fa fa-calendar-check-o"></i> {{blog.get_date}}
+                        </li>
+                    </ul>
+                    <p style="text-align: justify;">{{blog.details|safe|truncatewords:"50"|linebreaks}}</p>
+                    <a href="{% url 'read-more' blog.id %}" class="read-more">Read More...</a>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <br>
+            <br>
+            {% endfor %}
+            <!-- Pagination box end -->
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

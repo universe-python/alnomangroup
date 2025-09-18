@@ -1,0 +1,239 @@
+{% load static %}
+{% load dashboard_load_data %}
+<div class="navbar-custom">
+  <div class="container-fluid">
+    <ul class="list-unstyled topnav-menu float-end mb-0">
+
+      {% comment %} <li class="d-none d-lg-block">
+        <form class="app-search">
+          <div class="app-search-box dropdown">
+            <div class="input-group">
+              <input type="search" class="form-control" placeholder="Search..." id="top-search" />
+              <button class="btn input-group-text" type="submit"><i class="bi bi-search"></i></button>
+            </div>
+            <div class="dropdown-menu dropdown-lg" id="search-dropdown">
+              <!-- item -->
+              <div class="dropdown-header noti-title">
+                <h5 class="text-overflow mb-2">Found 22 results</h5>
+              </div>
+
+              <!-- item -->
+              <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <i class="fe-home me-1"></i>
+                <span>Analytics Report</span>
+              </a>
+
+              <!-- item -->
+              <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <i class="fe-aperture me-1"></i>
+                <span>How can I help you?</span>
+              </a>
+
+              <!-- item -->
+              <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <i class="fe-settings me-1"></i>
+                <span>User profile settings</span>
+              </a>
+
+              <!-- item -->
+              <div class="dropdown-header noti-title">
+                <h6 class="text-overflow mb-2 text-uppercase">Users</h6>
+              </div>
+
+              <div class="notification-list">
+                <!-- item -->
+                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                  <div class="d-flex align-items-start">
+                    <img class="d-flex me-2 rounded-circle" src="{% static 'assets/images/users/user-2.jpg' %}" alt="Generic placeholder image" height="32" />
+                    <div class="w-100">
+                      <h5 class="m-0 font-14">Erwin E. Brown</h5>
+                      <span class="font-12 mb-0">UI Designer</span>
+                    </div>
+                  </div>
+                </a>
+
+                <!-- item -->
+                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                  <div class="d-flex align-items-start">
+                    <img class="d-flex me-2 rounded-circle" src="{% static 'assets/images/users/user-5.jpg' %}" alt="Generic placeholder image" height="32" />
+                    <div class="w-100">
+                      <h5 class="m-0 font-14">Jacob Deo</h5>
+                      <span class="font-12 mb-0">Developer</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </li>
+
+      <li class="dropdown d-inline-block d-lg-none">
+        <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"><i class="bi bi-search noti-icon"></i></a>
+        <div class="dropdown-menu dropdown-lg dropdown-menu-end p-0">
+          <form class="p-3">
+            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username" />
+          </form>
+        </div>
+      </li> {% endcomment %}
+
+      <li class="dropdown d-none d-lg-inline-block">
+        <a class="nav-link arrow-none waves-effect waves-light" data-toggle="fullscreen" href="#"><i class="bi bi-fullscreen noti-icon h3"></i></a>
+      </li>
+
+      {% comment %} <li class="dropdown d-none d-lg-inline-block topbar-dropdown">
+        <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"><i class="bi bi-grid noti-icon"></i></a>
+        <div class="dropdown-menu dropdown-lg dropdown-menu-end">
+          <div class="p-lg-1">
+            <div class="row g-0">
+              <div class="col">
+                <a class="dropdown-icon-item" href="#">
+                  <img src="{% static 'assets/images/brands/slack.png' %}" alt="slack" />
+                  <span>Slack</span>
+                </a>
+              </div>
+              <div class="col">
+                <a class="dropdown-icon-item" href="#">
+                  <img src="{% static 'assets/images/brands/github.png' %}" alt="Github" />
+                  <span>GitHub</span>
+                </a>
+              </div>
+              <div class="col">
+                <a class="dropdown-icon-item" href="#">
+                  <img src="{% static 'assets/images/brands/dribbble.png' %}" alt="dribbble" />
+                  <span>Dribbble</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="row g-0">
+              <div class="col">
+                <a class="dropdown-icon-item" href="#">
+                  <img src="{% static 'assets/images/brands/bitbucket.png' %}" alt="bitbucket" />
+                  <span>Bitbucket</span>
+                </a>
+              </div>
+              <div class="col">
+                <a class="dropdown-icon-item" href="#">
+                  <img src="{% static 'assets/images/brands/dropbox.png' %}" alt="dropbox" />
+                  <span>Dropbox</span>
+                </a>
+              </div>
+              <div class="col">
+                <a class="dropdown-icon-item" href="#">
+                  <img src="{% static 'assets/images/brands/g-suite.png' %}" alt="G Suite" />
+                  <span>G Suite</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li> {% endcomment %}
+
+      <li class="dropdown notification-list topbar-dropdown">
+        <a class="nav-link dropdown-toggle waves-effect waves-light" href="{% url 'booking_view' %}" role="button" aria-haspopup="false" aria-expanded="false">
+          <i class="bi bi-journals h3"></i>
+          <span class="badge themebgcolor1 themecolor2 rounded-circle noti-icon-badge">{{ request|booking_count }}</span>
+        </a>
+      </li>
+      <li class="dropdown notification-list topbar-dropdown">
+        <a class="nav-link dropdown-toggle waves-effect waves-light" href="{% url 'contact_view' %}" role="button" aria-haspopup="false" aria-expanded="false">
+          <i class="bi bi-person-lines-fill noti-icon h3"></i>
+          <span class="badge themebgcolor1 themecolor2 rounded-circle noti-icon-badge">{{ request|contact_count }}</span>
+        </a>
+      </li>
+
+      <li class="dropdown notification-list topbar-dropdown">
+        {% for i in request|admin_info %}
+          <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+            {% if i.admin_image %}
+              <img src="{{ i.admin_image.url }}" alt="user-image" class="rounded-circle" />
+            {% else %}
+              <p class="text-danger">select image</p>
+            {% endif %}
+            <span class="pro-user-name ms-1">{{ i.admin_name }}</span>
+          </a>
+        {% endfor %}
+        <div class="dropdown-menu dropdown-menu-end profile-dropdown">
+          <!-- item -->
+          <div class="dropdown-header noti-title">
+            <h6 class="text-overflow m-0">Welcome !</h6>
+          </div>
+
+          <!-- item -->
+          <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <i class="bi bi-person"></i>
+            <span>My Account</span>
+          </a>
+
+          <!-- item -->
+          <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <i class="bi bi-gear"></i>
+            <span>Settings</span>
+          </a>
+
+          <!-- item -->
+          <a href="{% url 'change_password' %}" class="dropdown-item notify-item">
+            <i class="bi bi-lock"></i>
+            <span>Change Password</span>
+          </a>
+
+          <div class="dropdown-divider"></div>
+
+          <!-- item -->
+          <a href="{% url 'auth_logout' %}" class="dropdown-item notify-item">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </li>
+
+      {% comment %} <li class="dropdown notification-list">
+        <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light"><i class="bi bi-gear noti-icon"></i></a>
+      </li> {% endcomment %}
+    </ul>
+
+    <!-- LOGO -->
+    <div class="logo-box">
+      <a href="index.html" class="logo logo-dark text-center">
+        <span class="logo-sm">
+          <img src="{{ i.admin_image.url }}" alt="" height="22" />
+          <!-- <span class="logo-lg-text-light">UBold</span> -->
+        </span>
+        <span class="logo-lg">
+          <img src="{{ i.admin_image.url }}" alt="" height="20" />
+          <!-- <span class="logo-lg-text-light">U</span> -->
+        </span>
+      </a>
+
+      <a href="{% url 'dashboard' %}" class="logo logo-light text-center">
+        {% if con_website_logo.logo %}
+          <span class="logo-sm"><img src="{{ con_website_logo.logo.url }}" alt="" height="22" /></span>
+          <span class="logo-lg"><img src="{{ con_website_logo.logo.url }}" alt="" height="50" /></span>
+        {% else %}
+          <span class="logo-sm"><img src="{% static 'indexApp/images/logo.png' %}" alt="" height="22" /></span>
+          <span class="logo-lg"><img src="{% static 'indexApp/images/logo.png' %}" alt="" height="50" /></span>
+        {% endif %}
+      </a>
+    </div>
+
+    <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+      <li>
+        <button class="button-menu-mobile waves-effect waves-light"><i class="bi bi-list"></i></button>
+      </li>
+
+      <li>
+        <!-- Mobile menu toggle (Horizontal Layout) -->
+        <a class="navbar-toggle nav-link" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+          <div class="lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </a>
+        <!-- End mobile menu toggle -->
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+</div>

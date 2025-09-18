@@ -1,0 +1,55 @@
+{% extends 'tbase.html' %}
+
+{% load static %}
+{% load forloop_counter %}
+
+{% block title %}
+  Album Gallery
+{% endblock %}
+
+{% block content %}
+  <!-- Margin top -->
+  <div class="text-white pt-40" style="background-image: url('https://res.cloudinary.com/dnvmj9pvk/image/upload/v1753173742/company-profile_dbcjf5.jpg');">
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">Album Gallery</p>
+
+      <p class="pt-5 text-lg">
+        <a href="/">Home</a> > Album Gallery
+      </p>
+    </div>
+  </div>
+  <div class="container mx-auto py-10">
+  <!-- Album Grid -->
+  <div class="container mx-auto py-10">
+  <!-- Album Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-8">
+    {% for album in albums %}
+    <a href="{% url 'gallerys' album.id %}">
+      <div
+        class="rounded-xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-shadow duration-300 group">
+        
+        <!-- Image -->
+        {% if album.image %}
+        <img src="{{ album.image.url }}" alt="{{ album.title }}"
+          class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" />
+        {% else %}
+        <div class="w-full h-56 bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
+        {% endif %}
+        
+        <!-- Text Section -->
+        <div class="p-4">
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+            {{ album.title }}
+          </h3>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

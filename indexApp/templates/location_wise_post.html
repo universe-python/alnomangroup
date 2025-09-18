@@ -1,0 +1,74 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+  Location Post
+{% endblock %}
+
+{% block content %}
+  <!-- Margin top -->
+  <div class="mt-20"></div>
+
+  <!-- Featured properties start -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <!-- Main title -->
+      <div class="text-center mb-10">
+        <p class="text-sm text-gray-500 uppercase tracking-widest">Best Sale Properties</p>
+        <h1 class="text-3xl font-bold text-gray-800">Featured Properties</h1>
+      </div>
+
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2">
+        {% for feature_detail in feature_details %}
+           <div class="item slide-box wow fadeInRight delay-04s shadow-lg" data-aos="zoom-in-up" data-aos-duration="1{{ forloop.counter }}00">
+                <div class="property-2 h-[420px] overflow-y-auto">
+                    <div class="property-inner">
+                        <div class="property-overflow">
+                        <a href="{% url 'feature_details_property' feature_detail.id %}">
+                            <div class="property-photo relative">
+                                {% if feature_detail.post_pic %}
+                                <img src="{{feature_detail.post_pic.url}}" alt="rp" class="w-full h-[300px] object-cover">
+                                {% else %}
+                                <img src="" alt="rp" class="w-full h-[300px] object-cover">
+                                {% endif %}
+                                
+                            </div>
+                        </a>
+                        </div>
+                        <!-- content -->
+                        <div class="content p-4">
+                            <!-- title -->
+                            <h4 class="title text-lg font-semibold">
+                                <a href="{% url 'recent_details_property' feature_detail.id %}">{{feature_detail.post_title}}</a>
+                            </h4>
+                            <!-- Property address -->
+                            <h3 class="property-address text-sm text-gray-500">
+                                <a>
+                                    <i class="fa fa-map-marker text-red-500"></i> {{feature_detail.post_location}}
+                                </a>
+                            </h3>
+                        </div>
+                        <!-- Facilities List -->
+                        <ul class="grid grid-cols-3 px-2 space-x-2 text-sm text-gray-600">
+                            <li class="flex items-center whitespace-nowrap">
+                                <i class="flaticon-square-layouting-with-black-square-in-east-area text-gray-500"></i>
+                                <span class="ml-2">{{feature_detail.apartment_size|truncatechars:5}} sq ft</span>
+                            </li>
+                            <li class="flex items-center whitespace-nowrap">
+                                <i class="flaticon-bed text-gray-500"></i>
+                                <span class="ml-2">{{feature_detail.bedrooms}} Bed</span>
+                            </li>
+                            <li class="flex items-center whitespace-nowrap">
+                                <i class="flaticon-holidays text-gray-500"></i>
+                                <span class="ml-2">{{feature_detail.bathrooms}} Bath</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!-- Featured properties end -->
+{% endblock %}

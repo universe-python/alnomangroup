@@ -1,0 +1,42 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+  Awards
+{% endblock %}
+
+{% block content %}
+<!-- Margin top -->
+<div class="text-white pt-40" style="background-image: url('https://res.cloudinary.com/dnvmj9pvk/image/upload/v1753173742/company-profile_dbcjf5.jpg');">
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">Awards</p>
+  
+      <p class="pt-5 text-lg"><a href="/">Home</a> > Awards</p>
+    </div>
+  </div>
+<div class="container mx-auto">
+    <p class="text-4xl pt-10">Awards of Assure Group</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-5">
+       {% for q in query %}
+      
+        <div class="border shadow-xl mx-2 p-4">
+            <a href="{% url 'awards_details' q.pk %}">
+                <div class="w-full">
+                    <img src="{{q.image.url}}" alt="" class="h-96 w-auto rounded-lg object-contain">
+                </div>
+            </a>
+            <div class="">
+                <p class="text-xl">{{q.title}}</p>
+            </div>
+            <div class="pt-5">
+                <p>{{q.details|truncatechars_html:450|safe}}</p>
+            </div>
+      
+    </div>
+       {% endfor %}
+        
+    </div>
+</div>
+
+
+{% endblock content %}

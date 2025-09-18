@@ -1,0 +1,29 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+  Corparate Structure
+{% endblock %}
+
+{% block content %}
+
+
+<!-- Margin top -->
+<div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+  <div class="container mx-auto py-6 px-4">
+    <p class="text-4xl">Corparate Structure</p>
+
+    <p class="pt-5 text-lg"><a href="/">Home</a> > Corparate Structure</p>
+  </div>
+</div>
+ <div class="bg-[#FAFAFA]">
+  <div class="container mx-auto px-2">
+    <div class="pt-10 space-y-4">
+        <p class="text-center text-4xl">{{query.title}}</p>
+      <div class="">
+        <img src="{{query.image.url}}" alt="">
+      </div>
+    </div>
+  </div>
+ </div>
+{% endblock %}

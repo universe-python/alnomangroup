@@ -1,0 +1,98 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+Our Team
+{% endblock title %}
+
+{% block content %}
+
+
+<!-- Margin top -->
+<div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">Meet Our Team</p>
+  
+      <p class="pt-5 text-lg"><a href="/">Home</a> > Meet Our Team</p>
+    </div>
+</div>
+
+<div class="rs-services style2">
+  <div class="animate-text text-center mt-4">
+    <h2 class="text-2xl font-semibold">Meet Our Team</h2>
+    <p>
+      <hr class="border-t-2 border-green-700" />
+    </p>
+  </div>
+
+</div>
+
+<div class="container mb-5 mx-auto mt-10 px-4">
+  <div class="row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for tp in team_profile %}
+      <div class="team-card relative rounded-lg shadow-xl overflow-hidden bg-gradient-to-br from-red-700 via-teal-900 to-yellow-400 animate-gradient">
+        <div class="cover-photo relative bg-cover bg-center rounded-t-lg h-[250px]" style="background-image: url({{ tp.cover_image.url }});">
+            {% if tp.image %}
+              <img src="{{ tp.image.url }}" class="profile absolute bottom-[-50px] left-4 w-24 h-24 rounded-full border-2 border-white bg-black z-10" />
+            {% endif %}
+        </div>
+        <h5 class="profile-name text-white text-xl font-medium mt-20 text-end px-4">{{ tp.name }}</h5>
+        <p class="about text-white mt-4 text-lg leading-relaxed text-end px-4">{{ tp.designation }}</p>
+        <div class="icons flex justify-center gap-4 mt-4">
+          {% if tp.facebook_link %}
+            <a href="{{ tp.facebook_link }}" class="text-white hover:text-blue-400"><i class="fa-brands fa-facebook text-xl"></i> </a>
+          {% else %}
+            <a href="#" class="text-white hover:text-blue-400"><i class="fa-brands fa-facebook text-xl"></i> </a>
+          {% endif %}
+          {% if tp.twitter_link %}
+            <a href="{{ tp.twitter_link }}" class="text-white hover:text-blue-400"><i class="fa-brands fa-twitter text-xl"></i></a>
+          {% else %}
+            <a href="#" class="text-white hover:text-blue-400"><i class="fa-brands fa-twitter text-xl"></i></a>
+          {% endif %}
+          {% if tp.linkedin_link %}
+            <a href="{{ tp.linkedin_link }}" class="text-white hover:text-blue-400"><i class="fa-brands fa-linkedin text-xl"></i></a>
+          {% else %}
+            <a href="#" class="text-white hover:text-blue-400"><i class="fa-brands fa-linkedin text-xl"></i></a>
+          {% endif %}
+          {% if tp.instagram_link %}
+            <a href="{{ tp.instagram_link }}" class="text-white hover:text-pink-500"><i class="fa-brands fa-instagram text-xl"></i></a>
+          {% else %}
+            <a href="#" class="text-white hover:text-pink-500"><i class="fa-brands fa-instagram text-xl"></i></a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Tailwind CSS Utility Classes Explanation -->
+<style>
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+@keyframes textanim {
+    to {
+        background-position: 200% center;
+    }
+}
+.animate-gradient {
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+.animate-text {
+    background-image: linear-gradient(-225deg, #a00000 0%, #29B841 29%, #1148d7 67%, #fff800 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textanim 4s linear infinite;
+}
+</style>
+{% endblock content %}

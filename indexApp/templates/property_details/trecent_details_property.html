@@ -1,0 +1,396 @@
+{% extends 'tbase.html' %}
+{% load static %}
+{% load youtube_tags %}
+{% block title %}
+  {{ recent_property_details.post_title }}
+{% endblock %}
+
+{% block content %}
+  <!-- Margin top -->
+  <div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">{{ recent_property_details.post_title }}</p>
+
+      <p class="pt-5 text-lg">
+        <a href="/">Home</a> > {{ recent_property_details.post_title }}
+      </p>
+    </div>
+  </div>
+
+  {% include 'video_popup.html' %}
+
+  {% if recent_property_details.video_link %}
+    <!-- video popup -->
+    <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
+      <iframe class="embed-responsive-item" width="854" height="480" src="{{ recent_property_details.video_link|youtube_embed }}" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  {% endif %}
+
+  {% if recent_property_details.broucher %}
+    <!-- Broucher popup -->
+    <div id="headerPopupBroucher" class="mfp-hide embed-responsive embed-responsive-21by9">
+      <iframe src="{{ recent_property_details.broucher.url }}" width="100%" height="600px"></iframe>
+    </div>
+  {% endif %}
+
+  <!-- Properties details page start -->
+
+  <div class="container mx-auto px-2">
+    <!-- project details navigation menu -->
+    <div class="w-full py-4">
+      <div class="card border rounded-lg shadow-lg p-4 bg-[#262626] text-white">
+        <div class="prop_title_zone_menu_container">
+          <ul class="flex justify-center text-center space-x-6">
+            <li>
+              <a href="#project_details" class="hover:text-color">Description</a>
+            </li>
+            <li>
+              <a href="#appartment_details" class="hover:text-color">Details</a>
+            </li>
+            <li>
+              <a href="#section_header" class="hover:text-color">Floor Plan</a>
+            </li>
+            <li>
+              <a href="#location_and_feedback" class="hover:text-color">Feedback</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-wrap mb-5">
+      <div class="w-full md:w-1/2 bg-white">
+        <!-- Properties slider section start -->
+        <div class="relative">
+            {% with total_slides=related_images|length|add:1 %}
+                <div class="mySlides">
+                    <div class="absolute top-0 left-0 text-white bg-black bg-opacity-50 p-2 text-sm">{{ forloop.counter|add:1 }} / {{ total_slides }}</div>
+                    {% if recent_property_details.post_pic %}
+                        <img id="main-image" src="{{ recent_property_details.post_pic.url }}" class="w-full h-[317px] object-cover cursor-pointer zoomable" onclick="zoomImage(this)" />
+                    {% endif %}
+                </div>
+    
+                {% for img in related_images %}
+                    <div class="mySlides">
+                        <div class="absolute top-0 left-0 text-white bg-black bg-opacity-50 p-2 text-sm">{{ forloop.counter|add:1 }} / {{ total_slides }}</div>
+                        {% if img.image %}
+                            <img src="{{ img.image.url }}" class="w-full h-[317px] object-cover cursor-pointer zoomable" onclick="zoomImage(this)" />
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endwith %}
+        </div>
+
+
+           <!-- Zoom Modal -->
+        <div
+          id="zoomModal"
+          class="fixed inset-0 bg-black bg-opacity-90 z-[1000] hidden items-center justify-center"
+        >
+          <img
+            id="zoomedImage"
+            src=""
+            class="max-w-full max-h-full rounded shadow-lg cursor-zoom-out transition-transform duration-200"
+          />
+        </div>
+
+        <!-- JavaScript for Zoom -->
+        <script>
+          function zoomImage(imgElement) {
+            const zoomModal = document.getElementById("zoomModal");
+            const zoomedImage = document.getElementById("zoomedImage");
+
+            zoomedImage.src = imgElement.src;
+            zoomModal.classList.remove("hidden");
+            zoomModal.classList.add("flex");
+          }
+
+          // Close the zoom modal on click
+          document.getElementById("zoomModal").addEventListener("click", () => {
+            const zoomModal = document.getElementById("zoomModal");
+            zoomModal.classList.add("hidden");
+            zoomModal.classList.remove("flex");
+          });
+        </script>
+        <!-- Properties slider section end -->
+    
+        <!-- Thumbnails below the slider -->
+        <div class="mt-4 flex gap-2 overflow-x-auto">
+            <img src="{{ recent_property_details.post_pic.url }}" alt="Thumbnail" class="w-20 h-20 object-cover cursor-pointer" onclick="changeMainImage('{{ recent_property_details.post_pic.url }}')" />
+            
+            {% for img in related_images %}
+                {% if img.image %}
+                    <img src="{{ img.image.url }}" alt="Thumbnail" class="w-20 h-20 object-cover cursor-pointer" onclick="changeMainImage('{{ img.image.url }}')" />
+                {% endif %}
+            {% endfor %}
+        </div>
+      </div>
+      <script>
+        function changeMainImage(imageUrl) {
+            document.getElementById('main-image').src = imageUrl;
+        }
+      </script>
+
+      <div class="w-full md:w-1/2 mt-6">
+        <!-- Properties details section start -->
+        <div class="sidebar-widget bg-white p-6 mb-8 rounded-lg shadow-lg">
+          <div class="heading-properties">
+            <h3 class="text-2xl font-semibold text-gray-700">{{ recent_property_details.post_title }}</h3>
+            <p class="text-gray-600">
+              <i class="fa fa-map-marker"></i> {{ recent_property_details.post_location }}
+            </p>
+          </div>
+
+          <div class="properties-condition mb-5">
+            <h1 class="text-xl font-semibold text-color">Apartment Details</h1>
+            <div class="grid grid-cols-2 gap-4 mt-4">
+              <ul class="space-y-2">
+                <li>
+                  <i class="flaticon-square-layouting-with-black-square-in-east-area"></i> Apartment Size: {{ recent_property_details.land_size }} Katha
+                </li>
+                <li>
+                  <i class="flaticon-vehicle"></i> Parking Area: {{ recent_property_details.parking_size }} Sft
+                </li>
+                <li>
+                    <i class="fa fa-building"></i>Facing: {{ recent_property_details.facing }}
+                </li>
+                <li>
+                    <i class="fa fa-building"></i>Lift: {{ recent_property_details.lift }}
+                </li>
+              </ul>
+              <ul class="space-y-2">
+                <li>
+                  <i class="flaticon-building"></i> Total Apartment: {{ recent_property_details.total_apartment }}
+                </li>
+                <li>
+                  <i class="flaticon-holidays"></i> Apartment Size: {{ recent_property_details.apartment_size }} Ft
+                </li>
+                <li>
+                    <i class="flaticon-bed"></i>{{ recent_property_details.bedrooms }} Beds
+                </li>
+                <li>
+                <i class="flaticon-holidays"></i>{{ recent_property_details.bathrooms }} Bathroom
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <a href="tel:{{ recent_property_details.phone }}" class="bg-color2 text-white py-2 px-4 rounded-md inline-block mb-3">Call Now</a>
+            <a href="#headerPopupBroucher" id="headerBroucherLink" class="bg-color  text-white py-2 px-4 rounded-md inline-block mb-3">Broucher <i class="fa fa-arrow-down"></i></a>
+            <a href="#headerPopup" id="headerVideoLink" target="_blank" class="bg-[#F1953D] text-white py-2 px-4 rounded-md inline-block">Watch <i class="fa fa-play-circle"></i></a>
+          </div>
+        </div>
+        <!-- Properties details section end -->
+      </div>
+    </div>
+
+    <div class="section_header my-6" id="project_details">
+      <div class="row">
+        <div class="d-heading text-center">
+          <h1 class="text-color text-2xl">Description</h1>
+          <hr class="border-green-600 w-24 mx-auto" />
+        </div>
+        <div class="">
+          <div class="d-para text-gray-700">
+            <p>{{ recent_property_details.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section_header my-6" id="section_header">
+        <div class="d-heading text-center">
+          <h1 class="text-color text-2xl">Apartment Layout</h1>
+          <hr class="border-green-600 w-24 mx-auto mb-10" />
+        </div>
+      <div class="lg:flex gap-x-4 space-y-2">
+      
+        <div class="lg:w-1/2 border border-gray-300 rounded-lg shadow-lg p-4" id="project_floor_plan">
+            <table class="min-w-full table-auto">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="px-4 py-2 text-left font-semibold text-gray-600">Size</th>
+                  <th class="px-4 py-2 text-left font-semibold text-gray-600">Rooms</th>
+                  <th class="px-4 py-2 text-left font-semibold text-gray-600">2 Bathrooms</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-t">
+                  <td class="px-4 py-2">{{ recent_property_details.apartment_size }}</td>
+                  <td class="px-4 py-2">{{ recent_property_details.bedrooms }}</td>
+                  <td class="px-4 py-2">{{ recent_property_details.bathrooms }}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+          <div class="lg:w-1/2">
+            {% if recent_property_details.floor_plan_image_or_land_layout_img %}
+              <img src="{{ recent_property_details.floor_plan_image_or_land_layout_img.url }}" alt="floor-plans" class="img-fluid" onclick="openZoomModal_lp()" />
+            {% else %}
+              <img src="" alt="floor-plans" class="img-fluid" />
+            {% endif %}
+          </div>
+
+
+           <!-- Zoom Modal (Unique: _lp = land plan) -->
+      <div
+        id="zoomModal_lp"
+        class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center"
+      >
+        <div class="absolute inset-0 cursor-zoom-out" onclick="closeZoomModal_lp()"></div>
+
+        <img
+          id="zoomedImage_lp"
+          src=""
+          alt="Zoomed Floor Plan"
+          class="max-w-full max-h-full z-50 rounded shadow-lg"
+        />
+      </div>
+      <script>
+        function openZoomModal_lp() {
+          const modal = document.getElementById("zoomModal_lp");
+          const zoomedImage = document.getElementById("zoomedImage_lp");
+
+          zoomedImage.src = "{{ recent_property_details.floor_plan_image_or_land_layout_img.url }}";
+          modal.classList.remove("hidden");
+        }
+
+        function closeZoomModal_lp() {
+          document.getElementById("zoomModal_lp").classList.add("hidden");
+        }
+      </script>
+          
+      </div>
+    </div>
+    <div class="section_header my-6" id="section_Image Gallery">
+      
+      <div class="d-heading text-center">
+        <h1 class="text-color text-2xl">Image Gallery</h1>
+        <hr class="border-green-600 w-24 mx-auto mb-10" />
+      </div>
+      <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2">
+        
+        {% for l in related_images  %}
+          
+        {% if l.image %}
+          <img src="{{ l.image.url }}" alt="floor-plans" class="w-full h-[250px] object-cover" />
+        {% else %}
+          <img src="" alt="floor-plans" class="w-full h-[250px] object-cover" />
+        {% endif %}
+        {% endfor %}
+          
+      </div>
+   
+    </div>
+    <div class="section_header my-6" id="location_and_feedback">
+      <div class="">
+        <div class="d-heading text-center">
+          <h1 class="text-color text-2xl">Feedback</h1>
+          <hr class="border-green-600 w-24 mx-auto pb-10" />
+        </div>
+        <div class="lg:flex gap-4 space-y-2">
+          <div class="lg:w-1/2">
+            <p class="text-2xl text-color border-b-2 border-green-600">Feature</p>
+            <p>{{recent_property_details.feature}}</p>
+          </div>
+          <div class="lg:w-1/2">
+            <div class="floor-plans sidebar-widget">
+
+                {% if recent_property_details.map_link %}
+                 <iframe src="{{ recent_property_details.map_link }}" height="450" class="w-full h-full" allowfullscreen="" loading="lazy"></iframe>
+                {% else %}
+                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3650.1234567890!2d90.406622!3d23.793705!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sAtaturk%20Tower%2C%20Banani!5e0!3m2!1sen!2sbd!4v1718630000000" height="450" class="w-full h-full" allowfullscreen="" loading="lazy"></iframe>
+              {% endif %}
+            
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="section_header my-6" id="location_and_feedback">
+      <div class="">
+        <div class="d-heading text-center">
+          <h1 class="text-color text-2xl">Feedback Reply</h1>
+          <hr class="border-green-600 w-24 mx-auto" />
+        </div>
+        <div class="lg:flex gap-4 pt-10 space-y-2">
+          <div class="lg:w-1/2 mx-auto space-y-6">
+            {% for reply in feedback_reply %}
+              <div class="bg-white shadow-md rounded-lg p-6 border border-gray-200">
+                <form action="" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Name</label>
+                    <div class="text-lg text-gray-900 font-semibold">
+                      {{ reply.name }}
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Reply</label>
+                    <p class="text-gray-800 bg-gray-50 p-3 rounded">
+                      {{ reply.description }}
+                    </p>
+                  </div>
+                </form>
+              </div>
+            {% endfor %}
+          </div>                
+          <div class="lg:w-1/2">
+            <form action="" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">User Name</label>
+                <input type="text" name="name" value="Your name" class="form-control w-full py-3 px-4 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="{{ form.name.placeholder }}" />
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea name="description" class="form-control w-full py-3 px-4 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="{{ form.description.placeholder }}" rows="4">Your Description</textarea>
+              </div>
+              <input type="hidden" value="pending" name="status" />
+              <div class="col-md-12 text-center">
+                <button type="submit" class="bg-color hover:bg-green-700 text-white py-2 px-6 rounded-md">Send Feedback</button>
+              </div>
+            </form>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  <!-- Properties details page end -->
+
+  <script>
+    let slideIndex = 1
+    showSlides(slideIndex)
+    
+    function plusSlides(n) {
+      showSlides((slideIndex += n))
+    }
+    
+    function currentSlide(n) {
+      showSlides((slideIndex = n))
+    }
+    
+    function showSlides(n) {
+      let slides = document.getElementsByClassName('mySlides')
+      let dots = document.getElementsByClassName('demo')
+      if (n > slides.length) {
+        slideIndex = 1
+      }
+      if (n < 1) {
+        slideIndex = slides.length
+      }
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none'
+      }
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(' active', '')
+      }
+      slides[slideIndex - 1].style.display = 'block'
+      dots[slideIndex - 1].className += ' active'
+    }
+  </script>
+{% endblock %}

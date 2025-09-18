@@ -1,0 +1,83 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}
+Property Edit
+{% endblock title %}
+
+{% block content %}
+  <style>
+    a.delete-row {
+      background: red;
+      padding: 5px;
+      color: white;
+    }
+    a.add-row {
+      background: #343476;
+      padding: 5px;
+      color: white;
+    }
+  </style>
+
+  <div class="content-body">
+    <!-- row -->
+    <!-- row -->
+    <div class="container-fluid">
+      <div class="form-head page-titles d-flex align-items-center">
+        <div class="mr-auto d-lg-block">
+          <h2 class="text-black font-w600">Edit Property</h2>
+        </div>
+        <a href="{% url 'PropertyPost-list' %}" class="btn btn-primary rounded light mr-3">Property View</a>
+      </div>
+      <div class="row">
+        {% load crispy_forms_tags %}
+        <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form|crispy }}
+
+          <table class="table">
+            {{ relatedimages.management_form }}
+
+            {% for form in relatedimages.forms %}
+              {% if forloop.first %}
+                <thead>
+                  <tr>
+                    {% for field in form.visible_fields %}
+                      <th>{{ field.label|capfirst }}</th>
+                    {% endfor %}
+                  </tr>
+                </thead>
+              {% endif %}
+              <tr class="{% cycle row1 row2 %} formset_row">
+                {% for field in form.visible_fields %}
+                  <td>
+                    {# Include the hidden fields in the form #}
+                    {% if forloop.first %}
+                      {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                      {% endfor %}
+                    {% endif %}
+                    {{ field.errors.as_ul }}
+                    {{ field }}
+                  </td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </table>
+          <input type="submit" class="btn btn-primary" value="update" />
+          <br />
+          <br />
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="{% static 'formset/jquery.formset.js' %}"></script>
+  <script type="text/javascript">
+    $('.formset_row').formset({
+      addText: 'Add related image',
+      deleteText: 'Remove',
+      prefix: 'post_related_images_set' // prefix must be related image model name and add _set
+    })
+  </script>
+{% endblock %}

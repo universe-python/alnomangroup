@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Gallery
+{% endblock %}
+
+{% block content %}
+  <style>
+    #myImg {
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    #myImg:hover {
+      opacity: 0.7;
+    }
+    
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      /* z-index: 1; Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0); /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */ 
+    }
+    
+    /* Modal Content (image) */
+    .modal-content {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+    }
+    
+    /* Caption of Modal Image */
+    #caption {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+      text-align: center;
+      color: #199388;
+      padding: 10px 0;
+      height: 150px;
+    }
+    
+    /* Add Animation */
+    .modal-content,
+    #caption {
+      -webkit-animation-name: zoom;
+      -webkit-animation-duration: 0.6s;
+      animation-name: zoom;
+      animation-duration: 0.6s;
+    }
+    
+    @-webkit-keyframes zoom {
+      from {
+        -webkit-transform: scale(0);
+      }
+      to {
+        -webkit-transform: scale(1);
+      }
+    }
+    
+    @keyframes zoom {
+      from {
+        transform: scale(0);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+    
+    /* The Close Button */
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    /* 100% Image Width on Smaller Screens */
+    @media only screen and (max-width: 700px) {
+      .modal-content {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <!-- Custom gallery start -->
+  <div class="work">
+    <div class="category-buttons">
+      <a href="#" class="active all" data-group="all">All</a>
+      <a href="#" data-group="management">Management</a>
+      <a href="#" data-group="realstate">Realstate Property</a>
+      <a href="#" data-group="ecommerce">E-commerce</a>
+      <a href="#" data-group="client">Client Area</a>
+      <!--  <a href="#" data-group="sports">sports</a>
+      <a href="#" data-group="people">people</a>  -->
+    </div>
+
+    <div id="grid" class="grid">
+      {% for i in gallery_office %}
+        {% if i.img_type == 'Management' %}
+          <a class="card" data-groups="management,">
+            {% if i.img %}
+              <img id="myImg{{ forloop.counter }}" src="{{ i.img.url }}" />
+            {% endif %}
+            <div class="title">Management</div>
+          </a>
+        {% elif i.img_type == 'Realstate Property' %}
+          <a class="card" href="#" data-groups="realstate,">
+            {% if i.img %}
+              <img id="myImg{{ forloop.counter }}" src="{{ i.img.url }}" />
+            {% endif %}
+            <div class="title">Realstate Property</div>
+          </a>
+        {% elif i.img_type == 'E-commerce' %}
+          <a class="card" href="#" data-groups="ecommerce,">
+            {% if i.img %}
+              <img id="myImg{{ forloop.counter }}" src="{{ i.img.url }}" />
+            {% endif %}
+            <div class="title">E-commerce</div>
+          </a>
+        {% elif i.img_type == 'Client Area' %}
+          <a class="card" href="#" data-groups="client,">
+            {% if i.img %}
+              <img id="myImg{{ forloop.counter }}" src="{{ i.img.url }}" />
+            {% endif %}
+            <div class="title">Client Area</div>
+          </a>
+        {% endif %}
+
+        <div id="myModal" class="modal">
+          <!-- The Close Button -->
+          <span class="close">&times;</span>
+
+          <!-- Modal Content (The Image) -->
+          <img class="modal-content" id="img03" />
+
+          <!-- Modal Caption (Image Text) -->
+          <div id="caption"></div>
+        </div>
+        <!-- Custom gallery end -->
+
+        <script>
+          // Get the modal
+          var modal = document.getElementById('myModal')
+          
+          // Get the image and insert it inside the modal - use its "alt" text as a caption
+          var img = document.getElementById('myImg{{ forloop.counter }}')
+          var modalImg = document.getElementById('img03')
+          var captionText = document.getElementById('caption')
+          img.onclick = function () {
+            modal.style.display = 'block'
+            modalImg.src = this.src
+            captionText.innerHTML = this.alt
+          }
+          
+          // Get the <span> element that closes the modal
+          var span = document.getElementsByClassName('close')[0]
+          
+          // When the user clicks on <span> (x), close the modal
+          span.onclick = function () {
+            modal.style.display = 'none'
+          }
+        </script>
+      {% endfor %}
+      <div class="guide"></div>
+    </div>
+  </div>
+  <!-- The Modal -->
+{% endblock %}

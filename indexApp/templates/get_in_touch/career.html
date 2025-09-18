@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Career
+{% endblock title %}
+
+{% block content %}
+<style>
+    .notice_area {
+        margin-top: 100px!important;
+    }
+    p {
+    text-align: justify;
+}
+
+.animate-text {
+	background-image: linear-gradient(-225deg,
+			#a00000 0%,
+			#29B841 29%,
+			#1148d7 67%,
+			#fff800 100%);
+	background-size: auto auto;
+	background-clip: border-box;
+	background-size: 200% auto;
+	color: #fff;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: textanim 4s linear infinite;
+	/* display: inline-block; */
+}
+@keyframes textanim {
+	to {
+		background-position: 200% center;
+	}
+}
+   
+</style>
+    <div class="container notice_area">
+        <!-- <div class="row">
+            <h1>Career</h1>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                
+            </div>
+        </div> -->
+    </div>
+    <style>
+        .container{
+            color: #1b0234;
+        }
+        .btn22{
+            background: linear-gradient(8deg, #7f31ff 0%, #4279f1 100%);
+        }
+    </style>
+<div class="rs-services style2 pt-40 pb-120  mt-5">
+    <div class="animate-text">
+        <h2 class="text-center mt-4 "> Our Job Offers</h2>
+        <hr>
+    </div>
+    <div class="container">       
+        {% for c in career %}
+        <div class="card border-0 shadow col-12 col-md-8 mx-auto my-4 pb-5">         
+            <div class="card-body border-bottom">
+                <h3 style="font-size:15px;margin-bottom: 20px;">{{ c.title }}</h3>
+                <p style="font-size: 12px ; margin-top: -25px;">Posted at {{ c.post_date }} </p>
+                <p style="text-align: justify;">{{ c.job_description|truncatechars_html:200|safe }}</p>
+                <a style="margin-top: -15px;" class="btn-sm button-theme btn-3 text-white" href="{% url 'career-detail' c.slug c.id %}">Show details and Apply</a>
+            </div>
+        </div>
+
+        {% endfor %}         
+    </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,170 @@
+{% extends 'tbase.html' %}
+
+{% load static %}
+{% load forloop_counter %}
+
+{% block title %}
+  About
+{% endblock %}
+
+{% block content %}
+  <style>
+    .animate-bounces {
+      animation: bounce 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translateY(-10%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+      }
+      50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+      }
+    }
+    
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+
+  <!-- Margin top -->
+  <div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">About US</p>
+
+      <p class="pt-5 text-lg"><a href="/">Home</a> > About US</p>
+    </div>
+  </div>
+
+  <!-- About real estate start -->
+  <div class="mt-8 px-4">
+    <div class="container mx-auto">
+      {% for about in about_query %}
+        <div class="lg:flex gap-4">
+          <div class="lg:w-1/2 md:w-full sm:w-full xs:w-full">
+            <div class="about-img-section relative">
+              <div class="image-box sssa">
+                <div class="image-1">
+                  {% if about.main_image %}
+                    <img src="{{ about.main_image.url }}" class="w-full" alt="photo" />
+                  {% endif %}
+                </div>
+              </div>
+              <div class="absolute bottom-0 left-16">
+                <div class="relative top-[50%] about-box-Experience relative text-white">
+                  {% if about.shadow_image %}
+                    <img src="{{ about.shadow_image.url }}" alt="image" class="h-52" />
+                  {% endif %}
+                  <div class="content absolute top-[20%] left-[25%] -rotate-[30deg]">
+                    <p class="text-4xl font-bold text-center">{{ about.experience_year }}+</p>
+                    <p class="mb-0">Years of Experience</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:w-1/2 md:w-full sm:w-full xs:w-full flex">
+            <div class="about-text clearfix">
+              <h1 class="text-4xl font-semibold">{{ about.title }}</h1>
+              <p class="pt-4">{{ about.description|safe }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- About real estate end -->
+
+    <!-- Our service start -->
+
+    <!-- Main title -->
+    <div class="text-center my-8">
+      <h1 class="text-3xl font-semibold">What Are You Looking For</h1>
+      <hr class="bg-[#199388] h-1 w-1/4 mx-auto" />
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
+        {% for LookingSection in LookingSections %}
+          <div class="mb-8">
+            <div class="flex flex-col h-full text-center p-4 border rounded-lg shadow-md">
+              <i class="text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold">{{ LookingSection.title }}</h3>
+              <p>{{ LookingSection.description }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      
+
+    <!-- Our service end -->
+
+    <!-- Testimonial 3 section start -->
+
+    <!-- Main title -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-semibold">Our Testimonial</h1>
+    </div>
+    <div class="swiper mySwiper py-10">
+      <div class="swiper-wrapper">
+        {% for testimotial in about_testimotial %}
+          <div class="swiper-slide mb-6">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <div class="flex justify-center">
+                <div class="mb-4 w-16 h-16">
+                  <a href="#"><img class="rounded-full mx-auto" src="{{ testimotial.image.url }}" alt="user" /></a>
+                </div>
+              </div>
+              <div class="text-center">
+                <h3 class="text-lg font-semibold">{{ testimotial.name }}</h3>
+                <p class="text-sm text-gray-500">{{ testimotial.designation }}</p>
+                <p class="mt-2 text-gray-700">{{ testimotial.short_description }}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Add Navigation -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Swiper Initialization Script -->
+  <script>
+    var swiper = new Swiper('.mySwiper', {
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'fraction'
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      autoplay: {
+        delay: 3000, // Time in milliseconds (3 seconds)
+        disableOnInteraction: false // Keeps autoplay even after user interaction
+      }
+    })
+  </script>
+  <!-- Testimonial 3 section end -->
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}
+Booking Details
+{% endblock title %}
+
+{% block content %}
+  <!-- **********************************
+    Content body start
+*********************************** -->
+  <div class="content-body">
+    <!-- row -->
+    <!-- row -->
+    <div class="container-fluid">
+      <div class="form-head page-titles d-flex align-items-center">
+        <div class="mr-auto d-lg-block">
+          <h2 class="text-black font-w600">Booking Details</h2>
+        </div>
+        <a href="{% url 'booking_view' %}" class="btn btn-primary rounded light mr-3">View</a>
+      </div>
+      <div class="row bg-white p-4">
+        <div class="col-12 col-md-6">
+            <h4>Booking Id</h4>
+            <p>{{ query.id }}</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <h4>Name</h4>
+            <p>{{ query.name }}</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <h4>Email</h4>
+            <p>{{ query.email }}</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <h4>Phone</h4>
+            <p>{{ query.phone }}</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <h4>Job Designation</h4>
+            <p>{{ query.job_designation }}</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <h4>Type</h4>
+            <p>{{ query.property_type }}</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <h4>Size</h4>
+            <p>{{ query.property_size }}</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <h4>Location</h4>
+            <p>{{ query.property_location }}</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <h4>Description</h4>
+            <p>{{ query.roperty_description }}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- **********************************
+            Content body end
+        *********************************** -->
+{% endblock %}

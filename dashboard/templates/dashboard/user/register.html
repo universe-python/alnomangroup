@@ -1,0 +1,56 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Register
+{% endblock title %}
+
+{% block content %}
+  <div class="content-body">
+    <!-- row -->
+    <!-- row -->
+    <div class="container-fluid">
+      <div class="form-head page-titles d-flex align-items-center">
+        <div class="mr-auto d-lg-block">
+          <h2 class="text-black font-w600">Create User</h2>
+        </div>
+        <!-- <a href="{% url 'division_add' %}" class="btn btn-primary rounded light mr-3">User List</a> -->
+      </div>
+      <div class="authincation h-100">
+        <div class="container h-100">
+          <div class="row justify-content-center h-100 align-items-center">
+            <div class="col-md-6">
+              <div class="authincation-content">
+                <div class="row no-gutters">
+                  <div class="col-xl-12">
+                    <div class="auth-form">
+                      <div class="text-center mb-3">
+                        <a href="{% url 'dashboard' %}">
+                          {% if con_website_logo.logo %}
+                            <img src="{{ con_website_logo.logo.url }}" alt="" />
+                          {% else %}
+                            <img src="{% static 'indexApp/images/logo.png' %}" alt="" />
+                          {% endif %}
+                        </a>
+                      </div>
+                      <h4 class="text-center mb-4">Create user</h4>
+                      <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">{{ form|crispy }}</div>
+
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-primary btn-block">Create Me</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

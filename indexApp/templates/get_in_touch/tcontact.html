@@ -1,0 +1,215 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+  Contact
+{% endblock %}
+
+{% block content %}
+  <!-- Margin top -->
+  <div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">Contact US</p>
+
+      <p class="pt-5 text-lg">
+        <a href="/">Home</a> > Contact US
+      </p>
+    </div>
+  </div>
+
+  <!-- Contact 1 start -->
+  <div class="contact-1 content-area-7">
+    <div class="container mx-auto px-8 py-4">
+      <!-- Main title -->
+      <div class="main-title text-center">
+        <h1 class="text-3xl font-semibold">Get In Touch</h1>
+        {% comment %} <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p> {% endcomment %}
+      </div>
+
+      <div class="bg-white">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Contact form start -->
+          <div class="">
+            <div class="contact-form p-6 shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">Send us a Message</h3>
+             <form method="POST" enctype="multipart/form-data" class="px-4 sm:px-6 md:px-8 lg:px-10 py-6">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <!-- Name -->
+                  <div class="form-group">
+                    <input type="text" name="name" 
+                      class="form-control w-full py-3 px-4 rounded-md border border-gray-300 shadow-sm 
+                            focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 
+                            text-sm sm:text-base" 
+                      placeholder="Enter your name" />
+                  </div>
+
+                  <!-- Email -->
+                  <div class="form-group">
+                    <input type="text" name="email"
+                      class="form-control w-full py-3 px-4 rounded-md border border-gray-300 shadow-sm 
+                            focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 
+                            text-sm sm:text-base" 
+                      placeholder="Enter your email" />
+                  </div>
+
+                  <!-- Subject -->
+                  <div class="form-group">
+                    <input type="text" name="subject" 
+                      class="form-control w-full py-3 px-4 rounded-md border border-gray-300 shadow-sm 
+                            focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 
+                            text-sm sm:text-base" 
+                      placeholder="Enter your subject" />
+                  </div>
+
+                  <!-- Phone -->
+                  <div class="form-group">
+                    <input type="tel" name="phone" 
+                      class="form-control w-full py-3 px-4 rounded-md border border-gray-300 shadow-sm 
+                            focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 
+                            text-sm sm:text-base" 
+                      placeholder="Enter your phone number" />
+                  </div>
+
+                  <!-- Message -->
+                  <div class="form-group col-span-1 lg:col-span-2">
+                    <textarea name="message" 
+                      class="form-control w-full py-3 px-4 rounded-md border border-gray-300 shadow-sm 
+                            focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 
+                            text-sm sm:text-base" 
+                      placeholder="Enter your message" rows="4"></textarea>
+                  </div>
+
+                  <!-- Hidden Field -->
+                  <div class="form-group col-span-1 lg:col-span-2">
+                    <input type="hidden" value="pending" name="status" />
+                  </div>
+
+                  <!-- Submit Button -->
+                  <div class="col-span-1 lg:col-span-2 text-center mt-4">
+                    <button type="submit" 
+                      class="py-2 px-6 text-white rounded-md bg-color hover:bg-green-700 transition 
+                            text-sm sm:text-base">
+                      Send Message
+                    </button>
+                  </div>
+                  {{ form.captcha }}
+                </div>
+              </form>
+              <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+            </div>
+          </div>
+          <!-- Contact form end -->
+
+          <!-- Contact details start -->
+          <div class="col-lg-5 col-md-12 col-sm-12 text-white pt-5">
+            <div class="contact-details p-6 bg-cover bg-center bg-no-repeat relative" style="background-image: url('{% static 'indexApp/img/img-4.jpg' %}'); filter: hue-rotate(10deg);">
+              <div class="absolute inset-0 bg-[#2E67AF] bg-opacity-80 z-0"></div>
+
+              <h3 class="text-xl font-semibold mb-4 text-black z-10 relative">Opening Hours</h3>
+
+              <div class="ci-box flex items-center mb-4 z-10 relative">
+                <div class="icon mr-4">
+                  <i class="fa fa-map-marker text-2xl"></i>
+                </div>
+                <div class="detail">
+                  <h4 class="font-semibold">Office Address</h4>
+                  <p>
+                    {% if con_website_logo.address %}{{ con_website_logo.address }}{% endif %}
+                  </p>
+                </div>
+              </div>
+
+              <div class="ci-box flex items-center mb-4 relative z-10">
+                <div class="icon mr-4">
+                  <i class="fa fa-phone text-2xl"></i>
+                </div>
+                
+                <div class="detail">
+                  <h4 class="font-semibold">Phone Number</h4>
+                  <p>
+                    {% if con_website_logo.phone %}
+                    <span class="block">{{ con_website_logo.phone }}</span>
+                  {% endif %}
+                  {% if con_website_logo.phone2 %}
+                    <span class="block"> {{ con_website_logo.phone2 }}</span>
+                  {% endif %}
+                  {% if con_website_logo.phone3 %}
+                    <span class="block">{{ con_website_logo.phone3 }}</span>
+                  {% endif %}
+                  {% if con_website_logo.phone4 %}
+                    <span class="block"> {{ con_website_logo.phone4 }}</span>
+                  {% endif %}
+                  </p>
+                </div>
+              </div>
+
+              <div class="ci-box flex items-center mb-4 relative z-10">
+                <div class="icon mr-4">
+                  <i class="fa fa-envelope text-2xl"></i>
+                </div>
+                <div class="detail">
+                  <h4 class="font-semibold">Email Address</h4>
+                  <p>
+                    {% if con_website_logo.email %}
+                      <a href="mailto:{{ con_website_logo.email }}">{{ con_website_logo.email }}</a>
+                    {% endif %}
+                    {% if con_website_logo.email2 %}
+                      <a href="mailto:{{ con_website_logo.email2 }}">, {{ con_website_logo.email2 }}</a>
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+
+              <h3 class="text-xl font-semibold my-6 relative z-10">Follow Us</h3>
+              <div class="social-list flex gap-4 relative z-10">
+                {% for i in social_link %}
+                  <a href="{{ i.facebook_social_link }}" class="icon facebook text-xl"><span><i class="fa-brands fa-facebook"></i></span></a>
+                  <a href="{{ i.twitter_social_link }}" class="icon twitter text-xl"><span><i class="fa-brands fa-twitter"></i></span></a>
+                  <a href="{{ i.linkedin_social_link }}" class="icon github text-xl"><span><i class="fa-brands fa-linkedin"></i></span></a>
+                  <a href="{{ i.instagram_social_link }}" class="icon instagram text-xl"><span><i class="fa-brands fa-instagram"></i></span></a>
+                  <a href="{{ i.youtube_social_link }}" class="icon youtube text-xl"><span><i class="fa-brands fa-youtube"></i></span></a>
+                {% endfor %}
+                {% if con_website_logo.email %}
+                  <a href="mailto:{{ con_website_logo.email }}" class="icon youtube text-xl"><span><i class="fa-brands fa-google"></i></span></a>
+                {% endif %}
+                {% if con_website_logo.email2 %}
+                  <a href="mailto:{{ con_website_logo.email2 }}" class="icon youtube text-xl"><span><i class="fa-brands fa-google"></i></span></a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <!-- Contact details end -->
+        </div>
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3650.1234567890!2d90.406622!3d23.793705!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sAtaturk%20Tower%2C%20Banani!5e0!3m2!1sen!2sbd!4v1718630000000" class="w-full h-80 mt-10" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+    <!-- Would you like -->
+    <div class="relative mt-10" style="background-image: url('{% static 'indexApp/images/bg2.jpg' %}');">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#4D725E] from-10% via-[#2F4F3A] via-30% to-[#4D725E] to-90% opacity-80 z-0"></div>
+      <div class="container mx-auto pt-14 pb-20 relative z-10 px-2">
+        <p class="text-center text-2xl font-bold text-white">Would You Like</p>
+        <p class="text-center text-5xl text-white">To Have a Cup of Coffee!</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 pt-10 justify-items-center text-center">
+    {% for c in cupofcoffeee %}
+    <div class="border bg-white rounded-xl py-4 px-4 w-full h-full flex flex-col items-center justify-center space-y-1" 
+         data-aos="zoom-in-up" data-aos-duration="1{{ forloop.counter }}00">
+        <p class="text-2xl">{{c.title}}</p>
+        <p class="px-2 text-xl">
+            <i class="fa-solid fa-square-phone-flip text-color"></i> {{c.number}}
+        </p>
+    </div>
+    {% endfor %}
+</div>
+
+      </div>
+    </div>
+
+    <!-- Would you like End -->
+  </div>
+  <!-- Contact 1 end -->
+{% endblock %}

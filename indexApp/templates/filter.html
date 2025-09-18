@@ -1,0 +1,67 @@
+                <!-- Property grid start -->
+                <div class="row" id="filteredProducts">
+                    {% for feature_detail in feature_details %}
+                    
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 wow fadeInUp delay-03s">
+                        <!-- Property start -->
+                        <a href="{% url 'details_property' feature_detail.id %}">
+                        <div class="property fp2">
+                            <!-- Property img -->
+                            <div class="property-img">
+                                {% if feature_detail.post_pic %}
+                                <img src="{{feature_detail.post_pic.url}}" alt="fp" class="img-fluid">
+                                {% endif %}
+                                <div class="property-overlay">
+                                    
+                                     <div class="overlay-link">{{feature_detail.post_title}}</div>
+
+                                </div>
+                            </div>
+                            </a>
+                            <!-- Property content -->
+                            <div class="property-content">
+                                <!-- info -->
+                                <div class="info">
+                                    <!-- title -->
+                                    <h1 class="title">
+                                        <a href="{% url 'details_property' feature_detail.id %}">{{feature_detail.post_title}}</a>
+                                    </h1>
+                                    <!-- Property address -->
+                                    <h3 class="property-address">
+                                        <a href="{% url 'details_property' feature_detail.id %}">
+                                            <i class="fa fa-map-marker"></i>{{feature_detail.post_location}}
+                                        </a>
+                                    </h3>
+                                    <!-- Facilities List -->
+                                    <ul class="facilities-list clearfix">
+                                        <li>
+                                            <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
+                                            <span>{{feature_detail.apartment_size}} sq ft</span>
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-bed"></i>
+                                            <span>{{feature_detail.bedrooms}} Beds</span>
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-holidays"></i>
+                                            <span> {{feature_detail.bathrooms}} Baths</span>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                                <!-- Property footer -->
+                                <div class="property-footer">
+                                <span class="left">
+                                    <a href=""><p>Call</p></a>
+                                </span>
+                                    <span class="right">
+                                        <a href="{% url 'details_property' feature_detail.id %}"><p>Details</p></a>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Property end -->
+                    </div> 
+                    {% endfor %}                   
+                </div>
+                <!-- Property grid end -->

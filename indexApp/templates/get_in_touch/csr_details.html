@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ csr_details.title }}
+{% endblock title %}
+
+{% block content %}
+  <style>
+    /*======products-details=====*/
+    ._product-detail-content {
+      background: #fff;
+      padding: 15px;
+      border: 1px solid lightgray;
+    }
+    
+    ._product-detail-content p._p-name {
+      color: #166935;
+      font-size: 20px;
+      border-bottom: 1px solid lightgray;
+      padding-bottom: 12px;
+    }
+    .p-list span {
+      margin-right: 15px;
+    }
+    .p-list span.price {
+      font-size: 25px;
+      color: #166935;
+    }
+    
+    ._p-qty .value-button {
+      display: inline-flex;
+      border: 0px solid #ddd;
+      margin: 0px;
+      width: 30px;
+      height: 35px;
+      justify-content: center;
+      align-items: center;
+      background: #166935;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      color: #fff;
+    }
+    
+    ._p-qty .value-button {
+      border: 0px solid #166935;
+      height: 35px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    ._p-qty input#number {
+      text-align: center;
+      border: none;
+      border-top: 1px solid #166935;
+      border-bottom: 1px solid #166935;
+      margin: 0px;
+      width: 50px;
+      height: 35px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    ._p-add-cart {
+      margin-left: 0px;
+      margin-bottom: 15px;
+    }
+    .p-list {
+      margin-bottom: 10px;
+    }
+    ._p-features > span {
+      display: block;
+      color: darkslateblue;
+    }
+    ._p-add-cart .buy-btn {
+      background-color: #166935;
+      color: #fff;
+    }
+    ._p-add-cart .btn {
+      text-transform: capitalize;
+      padding: 6px 20px;
+      /* width: 200px; */
+      border-radius: 52px;
+    }
+    ._p-add-cart .btn {
+      margin: 0px 8px;
+    }
+  </style>
+
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+    }
+    .container,
+    .container-fluid,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+      width: 100%;
+      padding-right: var(--bs-gutter-x, 0rem);
+      padding-left: var(--bs-gutter-x, 0rem);
+      margin-right: auto;
+      margin-left: auto;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    
+    img {
+      vertical-align: middle;
+    }
+    /* Position the image container (needed to position the left and right arrows) */
+    .container {
+      position: relative;
+    }
+    
+    /* Hide the images by default */
+    .mySlides {
+      display: none;
+    }
+    
+    /* Add a pointer when hovering over the thumbnail images */
+    .cursor {
+      cursor: pointer;
+    }
+    
+    /* Next & previous buttons */
+    .prev,
+    .next {
+      cursor: pointer;
+      position: absolute;
+      top: 40%;
+      width: auto;
+      padding: 16px;
+      margin-top: -50px;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+    
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover,
+    .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+    
+    /* Container for image text */
+    .caption-container {
+      text-align: center;
+      background-color: #222;
+      padding: 2px 16px;
+      color: white;
+    }
+    
+    .row:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+    
+    /* Six columns side by side */
+    .column {
+      float: left;
+      width: 16.66%;
+    }
+    
+    /* Add a transparency effect for thumnbail images */
+    .demo {
+      opacity: 0.6;
+    }
+    
+    .active,
+    .demo:hover {
+      opacity: 1;
+    }
+    .mt50 {
+      margin-top: 50px;
+    }
+  </style>
+
+  <div class="container mt50">
+    {% for img in related_images %}
+      <div class="mySlides">
+        <div class="numbertext">1 / 6</div>
+        {% if img.image %}
+          <img style="height: 400px; width:100%" src="{{ img.image.url }}" style="width:100%" />
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+
+    <div class="row">
+      {% for img in related_images %}
+        <div class="column">
+          {% if img.image %}
+            <img class="demo cursor" src="{{ img.image.url }}" style="width:100%" onclick="currentSlide({{ forloop.counter }})" alt="The Woods" />
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script>
+    let slideIndex = 1
+    showSlides(slideIndex)
+    
+    function plusSlides(n) {
+      showSlides((slideIndex += n))
+    }
+    
+    function currentSlide(n) {
+      showSlides((slideIndex = n))
+    }
+    
+    function showSlides(n) {
+      let i
+      let slides = document.getElementsByClassName('mySlides')
+      let dots = document.getElementsByClassName('demo')
+      let captionText = document.getElementById('caption')
+      if (n > slides.length) {
+        slideIndex = 1
+      }
+      if (n < 1) {
+        slideIndex = slides.length
+      }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none'
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(' active', '')
+      }
+      slides[slideIndex - 1].style.display = 'block'
+      dots[slideIndex - 1].className += ' active'
+      captionText.innerHTML = dots[slideIndex - 1].alt
+    }
+  </script>
+
+  <section id="services" class="services section-bg my-5">
+    <div class="container">
+      <div class="row row-sm">
+        <div class="col-md-12 _boxzoom"></div>
+        <div class="col-md-12">
+          <div class="_product-detail-content">
+            {% if csr_details.image %}
+              <img src="{{ csr_details.image.url }}" width="100%" height="500px" min-height="200" class="img-responsive" alt="" />
+            {% endif %}
+            <br /><br />
+            <p class="_p-name">{{ csr_details.title }}</p>
+            <div class="_p-price-box">
+              <div class="_p-features">
+                <span>Service Details :-</span>
+                {{ csr_details.description }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}
+Notice View
+{% endblock title %}
+
+{% block content %}
+  <!-- **********************************
+    Content body start
+*********************************** -->
+  <div class="content-body">
+    <!-- row -->
+    <!-- row -->
+    <div class="container-fluid">
+      <div class="form-head page-titles d-flex align-items-center">
+        <div class="mr-auto d-lg-block">
+          <h2 class="text-black font-w600">Notice</h2>
+        </div>
+        <a href="{% url 'notice_add' %}" class="btn btn-primary rounded light mr-3">Add Notice</a>
+      </div>
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="table-responsive table-hover fs-14">
+            <table class="table table-hover display mb-4 dataTablesCard card-table" id="example-5">
+              <thead>
+                <tr>
+                  <!--  <th>
+                                    <div class="custom-control custom-checkbox ml-2">
+                                        <input type="checkbox" class="custom-control-input" id="checkAll" required="">
+                                        <label class="custom-control-label" for="checkAll"></label>
+                                    </div>
+                                </th>  -->
+                  <th>Pro. ID</th>
+                  <th>Title</th>
+                  <th>Url</th>
+                  <th>Action</th>
+                </tr>
+
+                <!--  {% for object in fields %}
+                               {{object}}
+                                <th>
+                                {% for fieldname in object %}<td>{{ fieldname }}</td>{% endfor %}
+                                </th>
+                                
+                                <tr>
+                                {% for value in object.values %}<td>{{ value }}</td>{% endfor %}
+                                </tr>
+                            {% endfor %}  -->
+              </thead>
+              <tbody>
+                {% for i in query %}
+                  <tr>
+                    <!--  <td>
+                                    <div class="custom-control custom-checkbox ml-2">
+                                        <input type="checkbox" class="custom-control-input" id="customCheckBox5" required="">
+                                        <label class="custom-control-label" for="customCheckBox5"></label>
+                                    </div>
+                                </td>  -->
+
+                    <td>{{ i.id }}</td>
+                    <td>{{ i.title }}</td>
+                    <td>{{ i.notice_file.url }}</td>
+
+                    <!--  <td>
+                                    {% for type in i.service_type.all %}
+                                    {{type.name}}
+                                    {% endfor %}
+                                </td>  -->
+                    <td>
+                      <a href="{% url 'notice_edit' i.id %}" class="text-info h4 mr-1" data-bs-toggle="tooltip" data-bs-original-title="Edit"><i class="ti-marker-alt"></i></a>
+                      <a href="javascript:void(0)" class="text-danger delete-link h4" data-url="{% url 'notice_delete' i.id %}" data-bs-original-title="Delete" data-bs-toggle="tooltip"><i class="ti-trash"></i></a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- **********************************
+            Content body end
+        *********************************** -->
+{% endblock %}

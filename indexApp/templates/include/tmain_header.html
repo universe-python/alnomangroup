@@ -1,0 +1,564 @@
+{% load static %}
+
+<!-- Top Bar -->
+<!-- Top Bar -->
+<style>
+  /* Google Translate Dropdown Custom */
+#google_translate_element select {
+  background: #374151; /* bg-gray-700 */
+  color: #fff;
+  border: none;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#google_translate_element select:hover {
+  background: #4b5563; /* hover:bg-gray-600 */
+}
+
+
+iframe{
+   
+  
+}
+.skiptranslate { 
+  display:none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important; 
+ }
+
+body { top: 0px !important; }
+
+</style>
+
+<div class="fixed w-full bg-gray-800 text-white py-2 text-xs z-[100] shadow-md top-0" style="margin: 0;">
+  <div class="container mx-auto flex justify-between items-center px-4">
+    
+    <!-- 📞 Hotline -->
+    <div class="flex items-center space-x-4">
+      <span class="flex items-center gap-2">
+        <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1753164405/7044732_eh7way.png" 
+             alt="Hotline" class="w-5"> 
+         +880 1901-310800
+      </span>
+    </div>
+
+
+   
+
+    <!-- 🌐 Social + Language -->
+    <div class="flex items-center space-x-4">
+
+       <!-- 🌐 Language Dropdown -->
+      <div class="flex items-center gap-2 relative">
+        <!-- Button -->
+        <button onclick="toggleLangDropdown()" 
+          class="flex items-center gap-1 bg-gray-700 px-3 py-1.5 rounded-md text-xs text-white hover:bg-gray-600 transition">
+          <i class="fa-solid fa-globe"></i>
+          <span class="hidden sm:inline">Language</span>
+          <i class="fa-solid fa-chevron-down text-[10px]"></i>
+        </button>
+
+        <!-- Dropdown -->
+        <div id="langDropdown" 
+            class="absolute right-0 top-8 bg-white text-gray-700 rounded-md shadow-lg hidden min-w-[120px] z-50">
+          <ul class="text-sm">
+            <li>
+              <a href="javascript:void(0)" onclick="doGTranslate('en|en');hideLangDropdown()" 
+                class="block px-3 py-1.5 hover:bg-gray-100">English</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" onclick="doGTranslate('en|bn');hideLangDropdown()" 
+                class="block px-3 py-1.5 hover:bg-gray-100">বাংলা </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+     <p> | </p>
+
+      {% for i in social_link %}
+        <a target="_blank" href="{{ i.facebook_social_link }}" 
+           class="text-[#1877F2] hover:scale-110 transition-transform">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a target="_blank" href="{{ i.youtube_social_link }}" 
+           class="text-[#FF0000] hover:scale-110 transition-transform">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a target="_blank" href="{{ i.linkedin_social_link }}" 
+           class="text-[#0A66C2] hover:scale-110 transition-transform">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a target="_blank" href="{{ i.twitter_social_link }}" 
+           class="text-[#1DA1F2] hover:scale-110 transition-transform">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a target="_blank" href="{{ i.instagram_social_link }}" 
+           class="text-[#E4405F] hover:scale-110 transition-transform">
+          <i class="fab fa-instagram"></i>
+        </a>
+      {% endfor %}
+
+      
+
+
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleLangDropdown() {
+  document.getElementById('langDropdown').classList.toggle('hidden');
+}
+function hideLangDropdown() {
+  document.getElementById('langDropdown').classList.add('hidden');
+}
+
+document.addEventListener('click', function(event) {
+  const dropdown = document.getElementById('langDropdown');
+  const button = event.target.closest('button');
+  if (!dropdown.contains(event.target) && !button) {
+    dropdown.classList.add('hidden');
+  }
+});
+</script>
+
+
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,bn',
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+
+// Hidden Google widget (we control with custom menu)
+document.addEventListener("DOMContentLoaded", function () {
+  var gtEl = document.createElement("div");
+  gtEl.id = "google_translate_element";
+  gtEl.style.display = "none";
+  document.body.appendChild(gtEl);
+});
+</script>
+
+<script type="text/javascript" 
+src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+function doGTranslate(lang_pair) {
+  if (lang_pair.value) lang_pair = lang_pair.value;
+  if (lang_pair == '') return;
+  var lang = lang_pair.split('|')[1];
+  var select = document.querySelector("select.goog-te-combo");
+  if (select && select.length) {
+    for (var i = 0; i < select.length; i++) {
+      if (select.options[i].value == lang) {
+        select.selectedIndex = i;
+        select.dispatchEvent(new Event('change'));
+        break;
+      }
+    }
+  }
+}
+</script>
+
+
+
+
+<!-- Navbar-->
+<div class="w-full fixed z-[99] flex justify-center ">
+  <div class="w-full text-[10px] xl:text-base mt-10" style="background: #c2c0c0ff;">
+    <div class="bg-{{con_website_logo.navbar_color}} bg-opacity-80 text-{{con_website_logo.navbar_textcolor}} py-2">
+      <div class="flex lg:gap-6 items-center px-2 lg:px-0 border justify-between">
+        <div class="lg:hidden">
+          <div class="drawer">
+            <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+            <div class="drawer-content">
+              <!-- Page content here -->
+              <label for="my-drawer" class="btn bg-transparent border-transparent drawer-button">
+                <i class="fa-solid fa-bars text-red-500"></i>
+              </label>
+            </div>
+            <!-- Mobile Start -->
+            <div class="drawer-side z-50">
+              <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+
+              <ul class="menu bg-white text-base-content min-h-full text-lg w-80 p-4 mt-6">
+                <li>
+                  <img src="{% static 'indexApp/images/logo4.png' %}" alt="Logo" class="h-auto max-h-24 mx-auto" />
+                </li>
+                <!-- Sidebar content here -->
+                <li>
+                  <a href="/" class="hover:text-color {% if request.path == '/' %}text-color{% endif %}">Home</a>
+                </li>
+
+                <!-- Corporate -->
+                <div class="collapse collapse-plus">
+                  <input type="checkbox" name="my-accordion-3" />
+                  <div class="collapse-title">Corporate</div>
+                  <div class="collapse-content bg-blue-100">
+                    <li>
+                      <a class="items-center hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/md-message' %}text-blue-500{% endif %}" href="{% url 'md_message' %}">MD Message</a>
+                    </li>
+                    <li>
+                      <a class="items-center hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/corparate-structure' %}text-blue-500{% endif %}" href="{% url 'corparate_structure' %}">Corporate Structure</a>
+                    </li>
+                    <li>
+                      <a class="items-center hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/contact' %}text-blue-500{% endif %}" href="{% url 'career' %}">Career Opportunity</a>
+                    </li>
+                    <li>
+                      <a class="items-center hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/land-wanted' %}text-blue-500{% endif %}" href="{% url 'land_wanted' %}">Land Wanted</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'csr' %}" class="flex items-center block hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/csr' %}bg-color text-white rounded-lg {% endif %}">CSR</a>
+                    </li>
+                    <li>
+                      <a class="flex items-center block hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/notice' %}bg-color text-white rounded-lg {% endif %}" href="{% url 'notice' %}">Notice</a>
+                    </li>
+                  </div>
+                </div>
+
+                <!-- Properties -->
+                <div class="collapse collapse-plus">
+                  <input type="checkbox" id="properties" name="my-accordion-3" />
+                  <div class="collapse-title"><a href="{% url 'apartmentproject' %}">Properties</a></div>
+                  <div class="collapse-content bg-blue-100">
+
+                    <!-- Land -->
+                    <div class="collapse collapse-plus">
+                      <input type="checkbox" id="land" name="properties-group" />
+                      <div class="collapse-title"><a href="{% url 'landproject' %}">Land</a></div>
+                      <div class="collapse-content bg-blue-100">
+                        <div class="space-y-2 pt-3">
+                          {% for project in projecttype %}
+                            <a href="{% url 'landproject' %}?project_types={{ project.id }}" class="block text-sm py-1 whitespace-nowrap rounded-lg hover:text-blue-500">
+                              <i class="fa-solid fa-square text-blue-500 text-xs mr-2"></i> {{ project.name }}
+                            </a>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Apartment -->
+                    <div class="collapse collapse-plus">
+                      <input type="checkbox" id="apartment" name="properties-group" />
+                      <div class="collapse-title">Apartment</div>
+                      <div class="collapse-content bg-blue-100">
+                        <div class="space-y-2 pt-3">
+                          {% for project in projecttype %}
+                            <a href="{% url 'apartmentproject' %}?project_types={{ project.id }}" class="block text-sm px-1 py-1 whitespace-nowrap rounded-lg hover:text-blue-500">
+                              <i class="fa-solid fa-square text-blue-500 text-xs mr-2"></i> {{ project.name }}
+                            </a>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="collapse collapse-plus">
+                      <input type="checkbox" id="location" name="properties-group" />
+                      <div class="collapse-title">Location</div>
+                      <div class="collapse-content bg-blue-100">
+                        <div class="space-y-2 pt-3">
+                          {% for project in subdistrict %}
+                            <a href="{% url 'apartmentproject' %}?sub_district={{ project.id }}" class="block text-sm py-1 whitespace-nowrap rounded-lg hover:text-blue-500">
+                              <i class="fa-solid fa-square text-blue-500 text-xs mr-2"></i> {{ project.name }}
+                            </a>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Gallery -->
+                <div class="collapse collapse-plus">
+                  <input type="checkbox" name="my-accordion-3" />
+                  <div class="collapse-title">Gallery</div>
+                  <div class="collapse-content bg-blue-100">
+                    <li>
+                      <a class="items-center hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/albums/' %}text-blue-500 {% endif %}" href="{% url 'album' %}">Image Gallery</a>
+                    </li>
+                    <li>
+                      <a class="items-center hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/video/gallery/' %} text-blue-500{% endif %}" href="{% url 'video_gallery' %}">Video Gallery</a>
+                    </li>
+                  </div>
+                </div>
+
+                <!-- Our Concerns -->
+                <li>
+                  <a class="hover:border-b hover:border-b-[3px] hover:border-color {% if request.path == '/sister-concerns/' %}border-b border-b-[3px] border-color{% endif %}" href="{% url 'sister_concerns' %}">Our Concerns</a>
+                </li>
+
+                <!-- Blogs -->
+                <li>
+                  <a class="hover:border-b hover:border-b-[3px] hover:border-color {% if request.path == '/blog/' or single_blog %}border-b border-b-[3px] border-color{% endif %}" href="{% url 'blog' %}">Blogs</a>
+                </li>
+
+                <!-- About -->
+                <div class="collapse collapse-plus">
+                  <input type="checkbox" name="my-accordion-3" />
+                  <div class="collapse-title">About</div>
+                  <div class="collapse-content bg-blue-100">
+                    <li>
+                      <a class="items-center hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/about/' %}text-blue-500 {% endif %}" href="{% url 'about' %}">About US</a>
+                    </li>
+                    <li>
+                      <a class="items-center hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/mission-vission' %} text-blue-500{% endif %}" href="{% url 'mission_vission' %}">Mission & Vision</a>
+                    </li>
+                    <li>
+                      <a class="items-center hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/awards' %}text-blue-500{% endif %}" href="{% url 'award' %}">Awards</a>
+                    </li>
+                    <li>
+                      <a class="items-center hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/our-certificate' %}text-blue-500{% endif %}" href="{% url 'our_certificate' %}">Certification</a>
+                    </li>
+                    <li>
+                      <a class="flex items-center block hover:border-r-4 hover:text-blue-500 hover:border-color {% if request.path == '/our-team' %}bg-color text-white rounded-lg {% endif %}" href="{% url 'ourteam' %}">Our Team</a>
+                    </li>
+                  </div>
+                </div>
+
+                <!-- Contact -->
+                <li>
+                  <a class="hover:border-b hover:border-b-[3px] hover:border-color {% if request.path == '/contact/' %}border-b border-b-[3px] border-color{% endif %}" href="{% url 'contactus' %}">Contact US</a>
+                </li>
+              </ul>
+            </div>
+            <!-- Mobile End -->
+          </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="bg-transparent lg:py-0 py-1 px-4">
+          <a href="/"><img src="{{ con_website_logo.logo.url }}" alt="" class="lg:h-14 md:h-16 h-12" /></a>
+        </div>
+
+        <!-- Rest of Desktop Navbar (unchanged) -->
+        <!-- ... আপনার Desktop কোড আগের মতই থাকবে ... -->
+
+
+        <div class="lg:flex items-center gap-x-2 hidden">
+          <p>
+            <a href="/" class="hover:bg-color  hover:text-[{{con_website_logo.navbar_texthovercolor}}] hover:rounded-lg px-4 py-0 {% if request.path == '/' %}rounded-lg {% endif %}"><i class="fa-solid fa-house {% if request.path == '/' %}text-[{{con_website_logo.navbar_textactivecolor}}]{% endif %} "></i></a>
+          </p>
+
+          <ul>
+            <li class="relative   group  hover:text-[{{con_website_logo.navbar_texthovercolor}}] hover:rounded-lg  {% if request.path == '/mission-vision' or request.path == '/md-message' or request.path == '/corparate-structure' or request.path == '/career/' or request.path == '/contact' or request.path == '/social-responsibility' or request.path == '/land-wanted' %} text-[{{con_website_logo.navbar_textactivecolor}}] {% endif %}">
+              <a href="#" class="block px-4 py-0">
+                <div class="flex items-center gap-2">
+                  <!-- Triangle Down -->
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="w-6 h-6 text-{{ con_website_logo.navbar_textcolor }} hover:text-white">
+                    <path d="M12 16L6 8h12l-6 8z" />
+                  </svg>
+                  <span>Corporate</span>
+                </div>
+              </a>
+
+
+              <div class="absolute left-0  hidden w-64  group-hover:block ">
+                <ul class="mt-6 text-sm  bg-white space-y-4 z-50 py-1 border text-black">
+              
+                 
+                  <li>
+                    <a class="pl-4 group/i flex items-center  hover:border-r-4 hover:text-blue-500  hover:border-color   {% if request.path == '/md-message' %}text-blue-500{% endif %}" href="{% url 'md_message' %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span> MD Message</a>
+                  </li>
+                  <li>
+                    <a class="pl-4 group/i flex items-center  hover:border-r-4 hover:text-blue-500  hover:border-color   {% if request.path == '/corparate-structure' %}text-blue-500{% endif %}" href="{% url 'corparate_structure' %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span> Corporate Structure</a>
+                  </li>
+                  <li>
+                    <a class="pl-4 group/i flex items-center  hover:border-r-4 hover:text-blue-500  hover:border-color   {% if request.path == '/contact' %}text-blue-500{% endif %}" href="{% url 'career' %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span> Career Opportunity</a>
+                  </li>
+                
+                
+                  
+                  <li>
+                    <a class="pl-4 group/i flex items-center  hover:border-r-4 hover:text-blue-500  hover:border-color   {% if request.path == '/land-wanted' %}text-blue-500{% endif %}" href="{% url 'land_wanted' %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span> Land Wanted</a>
+                  </li>
+                  
+
+
+                  <li>
+                    <a href="{% url 'csr' %}" class="pl-4 group/i flex items-center  block hover:border-r-4 hover:text-blue-500  hover:border-color  {% if request.path == '/csr' %}bg-color text-white rounded-lg {% endif %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span> CSR</a>
+                  </li>
+                 
+                  <li>
+                    <a class="pl-4 group/i flex items-center  block hover:border-r-4 hover:text-blue-500  hover:border-color {% if request.path == '/notice' %}bg-color text-white rounded-lg {% endif %}" href="{% url 'notice' %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span> Notice</a>
+                  </li>
+              </ul>
+              </div>
+            </li>
+          </ul>
+          <div class="group relative inline-block">
+            <button class="m-1 px-4 py-0 hover:text-[{{con_website_logo.navbar_texthovercolor}}] hover:rounded-lg {% if request.path == '/land-Project/' or request.path == '/apartment-Project/' %}text-[{{con_website_logo.navbar_textactivecolor}}] rounded-lg{% endif %}">
+              Properties
+            </button>
+
+            <div class="hidden group-hover:block absolute">
+              <div class=" z-10 mt-5 w-[500px] text-sm bg-white shadow-xl p-5"
+                  style="background-image: 
+                          linear-gradient(to left, white 50%, transparent 120%), 
+                          url('https://res.cloudinary.com/dnvmj9pvk/image/upload/v1753173742/company-profile_dbcjf5.jpg'); 
+                          background-position: right center; 
+                          background-repeat: no-repeat;">
+                  <ul class="grid grid-cols-3 gap-5 text-black">
+
+                    <!-- Land Section -->
+                    <li>
+                      <p class="text-sm font-semibold py-1 flex items-center group/i hover:bg-white">
+                        <span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-3 transition-all duration-500 delay-300"></span>
+                        <a href="{% url 'landproject' %}">Land</a>
+                      </p>
+                      <ul class="space-y-2 pt-1">
+                        {% for project in projecttype %}
+                          <a href="{% url 'landproject' %}?project_types={{ project.id }}"
+                            class="text-sm py-1 flex items-center group/i hover:bg-white whitespace-nowrap rounded-lg">
+                            <span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-3 transition-all duration-500 delay-300"></span>
+                            {{ project.name }}
+                          </a>
+                        {% endfor %}
+                      </ul>
+                    </li>
+
+                    <!-- Apartment Section -->
+                    <li>
+                      <p class="text-sm font-semibold py-1 flex items-center group/i hover:bg-white">
+                        <span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-3 transition-all duration-500 delay-300"></span>
+                        <a href="{% url 'apartmentproject' %}">Apartment</a>
+                      </p>
+                      <ul class="space-y-2 pt-1">
+                        {% for project in projecttype %}
+                          <a href="{% url 'apartmentproject' %}?project_types={{ project.id }}"
+                            class="text-sm px-1 py-1 flex items-center group/i hover:bg-white whitespace-nowrap rounded-lg">
+                            <span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-3 transition-all duration-500 delay-300"></span>
+                            {{ project.name }}
+                          </a>
+                        {% endfor %}
+                      </ul>
+                    </li>
+
+                    <!-- Location Section -->
+                    <li>
+                      <p class="text-sm font-semibold py-1 flex items-center group/i hover:bg-white">
+                        <span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-3 transition-all duration-500 delay-300"></span>
+                        Location
+                      </p>
+                      <ul class="space-y-2 pt-1">
+                        {% for project in subdistrict %}
+                          <a href="{% url 'apartmentproject' %}?sub_district={{ project.id }}"
+                            class="text-sm py-1 flex items-center group/i hover:bg-white whitespace-nowrap rounded-lg">
+                            <span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-3 transition-all duration-500 delay-300"></span>
+                            {{ project.name }}
+                          </a>
+                        {% endfor %}
+                      </ul>
+                    </li>
+
+                  </ul>
+              </div>
+            </div>
+          </div>
+
+         
+          <ul>
+            <li class="relative group hover:text-[{{ con_website_logo.navbar_texthovercolor }}] hover:rounded-lg {% if request.path == '/gallery/' or request.path == '/video/gallery/' %} text-[{{ con_website_logo.navbar_textactivecolor }}] rounded-lg {% endif %}">
+             <a href="#" class="block px-4 py-0">
+                <div class="flex items-center gap-2">
+                  <!-- Triangle Down -->
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="w-6 h-6 text-{{ con_website_logo.navbar_textcolor }} hover:text-white">
+                    <path d="M12 16L6 8h12l-6 8z" />
+                  </svg>
+                  <span>Media</span>
+                </div>
+              </a>
+              <div class="absolute left-0 group-hover:block w-64 hidden">
+                <ul class="text-sm  bg-white space-y-4 z-50 mt-6  py-1 border text-black">
+                
+                  <li>
+                    <a class="pl-4 group/i flex items-center  hover:border-r-4 hover:text-blue-500  hover:border-color   {% if request.path == '/ablums/' %} } text-[{{con_website_logo.navbar_textactivecolor}}]{% endif %}" href="{% url 'album' %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span>Image Gallery</a>
+                  </li>
+                  <li>
+                    <a class="pl-4 group/i flex items-center  hover:border-r-4 hover:text-[{{con_website_logo.navbar_textactivecolor}}]  hover:border-color   {% if request.path == '/video/gallery/' %}text-[{{con_website_logo.navbar_textactivecolor}}]{% endif %}" href="{% url 'video_gallery' %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span> Video Gallery</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <p>
+            <a class="hover:text-[{{con_website_logo.navbar_texthovercolor}}] hover:rounded-lg {% if request.path == '/sister-concerns/' or concern %} text-[{{con_website_logo.navbar_textactivecolor}}] rounded-lg {% endif %} px-4 py-0" href="{% url 'sister_concerns' %}">Our Concerns</a>
+          </p>
+
+          <p>
+            <a class="hover:text-[{{con_website_logo.navbar_texthovercolor}}] hover:rounded-lg {% if request.path == '/blog/' or single_blog %} text-[{{con_website_logo.navbar_textactivecolor}}] rounded-lg {% endif %} px-4 py-0" href="{% url 'blog' %}">Blogs</a>
+          </p>
+          {% comment %} <p>
+            <a class="hover:text-[{{con_website_logo.navbar_texthovercolor}}] hover:rounded-lg {% if request.path == '/about/' %}text-[{{con_website_logo.navbar_textactivecolor}}] rounded-lg {% endif %} px-4 py-0" href="{% url 'about' %}">About US</a>
+          </p> {% endcomment %}
+          <ul>
+            <li class="relative   group  hover:text-[{{con_website_logo.navbar_texthovercolor}}] hover:rounded-lg  {% if request.path == '/mission-vision' or request.path == '/about/'  or request.path == '/our_team/' or request.path == '/awards' or request.path == '/our-certificate' or request.path == '/testimonial' %} text-[{{con_website_logo.navbar_textactivecolor}}] {% endif %}">
+              <a href="{% url 'about' %}" class="block px-4 py-0">
+                <div class="flex items-center gap-2">
+                  <!-- Triangle Down -->
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="w-6 h-6 text-{{ con_website_logo.navbar_textcolor }} hover:text-white">
+                    <path d="M12 16L6 8h12l-6 8z" />
+                  </svg>
+                  <span>About US</span>
+                </div>
+              </a>
+
+
+              <div class="absolute left-0  hidden w-64  group-hover:block ">
+                <ul class="mt-6 text-sm  bg-white space-y-4 z-50 py-1 border text-black">
+              
+                  <li>
+                    <a class="pl-4 group/i flex items-center  hover:border-r-4 hover:text-blue-500  hover:border-color   {% if request.path == '/mission-vision' %} text-blue-500{% endif %}" href="{% url 'mission_vission' %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span> Mission & Vision</a>
+                  </li>
+                  <li>
+                    <a class="pl-4 group/i flex items-center  hover:border-r-4 hover:text-blue-500  hover:border-color   {% if request.path == '/awards' %}text-blue-500{% endif %}" href="{% url 'award' %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span> Awards</a>
+                  </li>
+                  <li>
+                    <a class="pl-4 group/i flex items-center  hover:border-r-4 hover:text-blue-500  hover:border-color   {% if request.path == '/our-certificate' %}text-blue-500{% endif %}" href="{% url 'our_certificate' %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span> Certification</a>
+                  </li>
+                  <li>
+                    <a class="pl-4 group/i flex items-center  hover:border-r-4 hover:text-blue-500  hover:border-color   {% if request.path == '/testimonial' %}text-blue-500{% endif %}" href="{% url 'testimonials' %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span> Testimonials</a>
+                  </li>
+                  <li>
+                    <a class="pl-4 group/i flex items-center  block hover:border-r-4 hover:text-blue-500  hover:border-color {% if request.path == '/our-team' %}bg-color text-white rounded-lg {% endif %}" href="{% url 'ourteam' %}"><span class="w-0 group-hover/i:w-4 h-0.5 bg-color mr-2 transition-all duration-500 deley-300"></span> Our Team</a>
+                  </li>
+                 
+              </ul>
+              </div>
+            </li>
+          </ul>
+          
+          <p>
+            <a class="hover:text-[{{con_website_logo.navbar_texthovercolor}}] hover:rounded-lg {% if request.path == '/contact' %}text-[{{con_website_logo.navbar_textactivecolor}}] rounded-lg {% endif %} px-4 py-0" href="{% url 'contactus' %}">Contact</a>
+          </p>
+        </div>
+       <!-- Primary Book Now Button -->
+        <!-- Alternative Outline Version -->
+        <a href="{% url 'realestate_apply' %}" class="inline-block md:mx-4 mx-1">
+          <button class="border-2 border-{{con_website_logo.navbar_textcolor}} hover:border-yellow-500 text-{{con_website_logo.navbar_textcolor}} hover:text-yellow-600 hover:bg-yellow-50 font-bold md:py-3 py-2 md:px-6 px-2 md:text-base text-xs rounded-lg transition duration-300">
+            Book Now
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

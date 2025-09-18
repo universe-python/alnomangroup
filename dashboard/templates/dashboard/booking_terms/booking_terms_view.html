@@ -1,0 +1,55 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}
+Real Estate Terms
+{% endblock title %}
+
+{% block content %}
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="form-head page-titles d-flex align-items-center justify-content-between">
+      <h2 class="text-black font-w600">Real Estate Terms & Conditions</h2>
+      <a href="{% url 'realstate_terms_add' %}" class="btn btn-primary rounded">Add New</a>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-body table-responsive">
+            <table class="table table-hover fs-14">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Terms</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in query %}
+                <tr>
+                  <td>{{ i.id }}</td>
+                  <td>{{ i.terms|truncatewords_html:20|safe }}</td>
+                  <td>
+                    <a href="{% url 'realstate_terms_edit' i.id %}" class="text-primary h4 mr-2" data-bs-toggle="tooltip" title="Edit">
+                      <i class="ti-marker-alt"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="text-danger delete-link h4" data-url="{% url 'realstate_terms_delete' i.id %}" data-bs-toggle="tooltip" title="Delete">
+                      <i class="ti-trash"></i>
+                    </a>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="3">No terms available.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

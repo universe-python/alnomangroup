@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock title %} | Al-Noman Group Properties</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'indexApp/fonts/flaticon/font/flaticon.css' %}">
+     <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon icon -->
+    {% if con_website_logo.favicon %}
+    <link rel="shortcut icon" href="{{ con_website_logo.favicon.url }}" type="image/x-icon" >
+    {% else %}
+    <link rel="shortcut icon" href="{% static 'indexApp/images/favicon.png' %}" type="image/x-icon" >
+    {% endif %}
+     <!-- whatsapp Chat plugin Code -->
+    <a href="https://wa.me/+8801901310800" class="fixed bottom-4 right-4 bg-green-500 text-white p-3 rounded-full shadow-lg z-50 hover:bg-green-600" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp" class="w-6 h-6" />
+    </a>
+
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPlayfair+Display:400,700%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;900&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+
+</head>
+<style>
+    body, html {
+        overflow-x: hidden;
+        background: #ffffff;
+    }
+    
+    .bg-color{
+        background-color: #2E67AF;
+    }
+    .bg-color2{
+        background-color: #ED1E26;
+    }
+    .bg-hover{
+        background-color: #2E67AF;
+    }
+    .text-color{
+        color: #2E67AF
+    }
+    .text-color2{
+        color: #ED1E26
+    }
+    .text-hover{
+        color: #2E67AF;
+    }
+</style>
+<body>
+    
+{% include 'include/tmain_header.html' %}
+<div id="google_translate_element"></div>
+    
+  
+
+
+{% block content %}
+
+
+
+
+{% endblock content %}
+
+
+{% include 'include/tnew_footer.html' %}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+    {% for message in messages %}
+    Toast.fire({
+    icon: '{{ message.tags }}',
+    title: '{{ message }}',
+    })
+    {% endfor %}
+</script>
+
+
+
+{% block javascript %}
+  
+{% endblock %}
+
+<style>
+  /* Google Translate Dropdown Custom */
+#google_translate_element select {
+  background: #374151; /* bg-gray-700 */
+  color: #fff;
+  border: none;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#google_translate_element select:hover {
+  background: #4b5563; /* hover:bg-gray-600 */
+}
+
+</style>
+
+
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en', // আপনার ডিফল্ট ভাষা
+    includedLanguages: 'en,bn', // কোন কোন ভাষা allow করবেন
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+</script>
+
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,bn',
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+
+// Hidden Google widget (we control with custom menu)
+document.addEventListener("DOMContentLoaded", function () {
+  var gtEl = document.createElement("div");
+  gtEl.id = "google_translate_element";
+  gtEl.style.display = "none";
+  document.body.appendChild(gtEl);
+});
+</script>
+
+<script type="text/javascript" 
+src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+function doGTranslate(lang_pair) {
+  if (lang_pair.value) lang_pair = lang_pair.value;
+  if (lang_pair == '') return;
+  var lang = lang_pair.split('|')[1];
+  var select = document.querySelector("select.goog-te-combo");
+  if (select && select.length) {
+    for (var i = 0; i < select.length; i++) {
+      if (select.options[i].value == lang) {
+        select.selectedIndex = i;
+        select.dispatchEvent(new Event('change'));
+        break;
+      }
+    }
+  }
+}
+</script>
+
+
+
+
+    
+  <!-- AOS JS at bottom -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: false,
+      offset: 120
+    });
+  </script>
+
+
+</body>
+
+</html>
+

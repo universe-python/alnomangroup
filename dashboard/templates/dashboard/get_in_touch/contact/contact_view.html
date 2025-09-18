@@ -1,0 +1,82 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}
+Contact View
+{% endblock title %}
+
+{% block content %}
+  <!-- **********************************
+    Content body start
+*********************************** -->
+  <div class="content-body">
+    <!-- row -->
+    <!-- row -->
+    <div class="container-fluid">
+      <div class="form-head page-titles d-flex align-items-center">
+        <div class="mr-auto d-lg-block">
+          <h2 class="text-black font-w600">Contact</h2>
+        </div>
+        <a href="{% url 'contact_view' %}" class="btn btn-primary rounded light mr-3">View</a>
+      </div>
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="table-responsive table-hover fs-14">
+            <table class="table table-hover display mb-4 dataTablesCard card-table" id="example-5">
+              <thead>
+                <tr>
+                  <!--  <th>
+                                    <div class="custom-control custom-checkbox ml-2">
+                                        <input type="checkbox" class="custom-control-input" id="checkAll" required="">
+                                        <label class="custom-control-label" for="checkAll"></label>
+                                    </div>
+                                </th>  -->
+                  <th>Pro. ID</th>
+                  <th>Name</th>
+                  <th>email</th>
+                  <th>phone</th>
+                  <th>subject</th>
+                  <th>message</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+
+                <!--  {% for object in fields %}
+                               {{object}}
+                                <th>
+                                {% for fieldname in object %}<td>{{ fieldname }}</td>{% endfor %}
+                                </th>
+                                
+                                <tr>
+                                {% for value in object.values %}<td>{{ value }}</td>{% endfor %}
+                                </tr>
+                            {% endfor %}  -->
+              </thead>
+              <tbody>
+                {% for i in query %}
+                  <tr>
+                    <td>{{ i.id }} {% if i.status == 'pending' %}<i class="bi bi-chat-dots" style="color:red;"></i>{% endif %}</td>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.email }}</td>
+                    <td>{{ i.phone }}</td>
+                    <td>{{ i.subject|truncatewords:5  }}</td>
+                    <td>{{ i.message|truncatewords:5 }}</td>
+
+                    <td>{{ i.status }}</td>
+                    <td>
+                      <a href="{% url 'contact_update' i.id %}" class="text-primary h4 mr-1" data-bs-original-title="View" data-bs-toggle="tooltip"><i class="ti-eye"></i></a>
+                      <a href="javascript:void(0)" class="text-danger delete-link h4" data-url="{% url 'contact_delete' i.id %}" data-bs-original-title="Delete" data-bs-toggle="tooltip"><i class="ti-trash"></i></a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- **********************************
+            Content body end
+        *********************************** -->
+{% endblock %}

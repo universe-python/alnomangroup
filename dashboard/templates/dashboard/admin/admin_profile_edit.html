@@ -1,0 +1,35 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}
+Admin Edit
+{% endblock title %}
+
+{% block content %}
+  <!-- **********************************
+    Content body start
+*********************************** -->
+  <div class="content-body">
+    <!-- row -->
+    <!-- row -->
+    <div class="container-fluid py-3">
+      <div class="form-head page-titles d-flex align-items-center">
+        <div class="mr-auto d-lg-block">
+          <h2 class="text-black font-w600">Admin</h2>
+        </div>
+        <a href="{% url 'admin_profile_view' %}" class="btn btn-primary rounded light mr-3">View</a>
+      </div>
+      <div class="row">
+        {% load crispy_forms_tags %}
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- **********************************
+            Content body end
+        *********************************** -->
+{% endblock %}

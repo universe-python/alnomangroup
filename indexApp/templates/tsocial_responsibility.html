@@ -1,0 +1,27 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+Social Responsibility
+{% endblock %}
+
+{% block content %}
+
+
+<!-- Margin top -->
+<div class="text-white pt-40" style="background-image: url('{% if query.banner  %}{{query.banner.url}}{% else %}{% static 'indexApp/images/company-profile.jpg' %}{% endif %}');">
+  <div class="container mx-auto py-6 px-4">
+    <p class="text-4xl">Social Responsibility</p>
+
+    <p class="pt-5 text-lg"><a href="/">Home</a> > Social Responsibility</p>
+  </div>
+</div>
+  <div class="bg-[#FAFAFA]">
+    <div class="container mx-auto px-2">
+        <div class="pt-10 space-y-4">
+          <p class="text-4xl text-center">{{ query.title }}</p>
+          <p>{{query.details|safe}}</p>
+        </div>
+      </div>
+  </div>
+{% endblock %}

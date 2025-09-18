@@ -1,0 +1,32 @@
+
+
+    {% for feature_detail in feature_details %}
+      <div class="property d-flex flex-col border rounded-lg overflow-hidden shadow-lg">
+        <!-- Property img -->
+        <a href="{% url 'land_details_property' feature_detail.slug %}">
+          <div class="property-img relative group">
+            {% if feature_detail.post_pic %}
+              <img src="{{ feature_detail.post_pic.url }}" class="w-full h-56 object-cover" alt="fp" />
+            {% endif %}
+            <div class="property-overlay absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span class="overlay-link text-xl font-semibold">{{ feature_detail.post_title }}</span>
+            </div>
+          </div>
+        </a>
+        <!-- Property content -->
+        <div class="property-content  flex-grow">
+          <div class="info text-center pt-5">
+            <!-- Title -->
+            <h1 class="text-xl font-bold"><a href="{% url 'land_details_property' feature_detail.slug %}">{{ feature_detail.post_title }}</a></h1>
+            <!-- Property address -->
+            <h3 class="text-md text-gray-700 pt-3"><a href="{% url 'land_details_property' feature_detail.slug %}"><i class="fa fa-map-marker"></i> {{ feature_detail.post_location }}</a></h3>
+          </div>
+
+          <!-- Property footer -->
+          <div class="property-footer flex justify-center mt-4 border p-4 gap-4">
+            <span class="left"><a href=""><p class="text-md text-white hover:text-[#166935] p-1 px-4 hover:bg-white bg-color rounded-lg">Call</p></a></span>
+            <span class="right"><a href="{% url 'land_details_property' feature_detail.slug %}"><p class="text-md text-white hover:text-[#166935] p-1 px-4 hover:bg-white bg-color rounded-lg">Details</p></a></span>
+          </div>
+        </div>
+      </div>
+    {% endfor %}

@@ -1,0 +1,66 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/magnific-popup.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js"></script>
+
+<script>
+  $( document ).ready(function() {
+        $('#headerVideoLink').magnificPopup({
+        type:'inline',
+        midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+        });
+    });
+</script>
+<script>
+  $( document ).ready(function() {
+        $('#headerBroucherLink').magnificPopup({
+        type:'inline',
+        midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+        });
+    });
+</script>
+
+<!-- Video popup plugin -->
+<style>
+    /* video popup CSS Document */
+    iframe.embed-responsive-item {
+        margin: 0 auto;
+        text-align: center;
+        display: block;
+    }
+    .mfp-close-btn-in .mfp-close {
+    color: red;
+}
+
+@media only screen and (min-width: 375px) {
+    iframe.embed-responsive-item {
+        width: 360px;
+        height: 160px;
+        display: block;
+        text-align: center;
+    }
+
+}
+
+@media only screen and (min-width: 575px) {
+    iframe.embed-responsive-item {
+        width: 570px;
+        height: 321px;
+        display: block;
+        text-align: center;
+    }
+
+}
+
+@media only screen and (min-width: 768px) {
+    iframe.embed-responsive-item {
+        width: 750px;
+        height: 429px;
+        display: block;
+        text-align: center;
+    }
+
+}
+
+
+</style>
+<!-- End Video popup plugin -->

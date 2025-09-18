@@ -1,0 +1,155 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+Sister Concerns
+{% endblock %}
+
+{% block content %}
+
+
+{% if sister_concern_banner %}
+<div class="text-white pt-40" style="background-image: url('{{ sister_concern_banner.image.url }}'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 60vh; position: relative;">
+{% else %}
+{% endif %}
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">Sister Concerns</p>
+
+      <p class="pt-5 text-lg">
+        <a href="/">Home</a> > Sister Concerns
+      </p>
+    </div>
+  </div>
+
+<!-- Sister Concerns Start -->
+{% if sister_concerns %}
+<div data-aos="flip-up" data-aos-duration="1200" id="sister-concerns" class="grid place-content-center my-4 md:mt-32">
+  <div class="text-center mb-10">
+    <h1 class="text-3xl md:text-5xl font-bold text-gray-800 uppercase tracking-wide mb-4 relative inline-block">
+      <span class="relative z-10 px-4">
+        Sister Concerns
+      </span>
+      <span class="absolute bottom-0 left-0 right-0 h-2 bg-blue-100 transform -translate-y-1 z-0 w-full"></span>
+    </h1>
+    <div class="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
+  </div>
+</div>
+
+<section class="container mx-auto grid grid-cols-2 md:grid-cols-3 px-2 mb-2">
+  {% for i in sister_concerns %}
+  <div data-aos="zoom-in-up" data-aos-duration="1{{ forloop.counter }}00" class="w-full px-2 md:p-2">
+    <div class="rounded hover:scale-105 drop-shadow-lg overflow-hidden flex flex-col max-w-xl mx-auto">
+      <a href="{% url 'sister_concerns_details' slug=i.slug %}">
+        {% if i.img %}
+        <img class="aspect-square object-cover w-full" src="{{ i.img.url }}" alt="{{ i.name }}">
+        {% endif %}
+      </a>
+      <div class="relative -mt-8 md:-mt-12 px-4 text-center p-2 pb-4 bg-white bg-opacity-80 m-6 md:m-8">
+        <a href="{% url 'sister_concerns_details' slug=i.slug %}" class="font-semibold text-sm md:text-base hover:text-indigo-600 transition duration-500">
+          {{ i.name }}
+        </a>
+        <p class="text-gray-500 text-xs md:text-sm mb-2">
+          Country: {{ i.country.name }}
+        </p>
+        <a href="{% url 'sister_concerns_details' slug=i.slug %}" class="text-xs text-white bg-blue-700 hover:bg-blue-800 py-1 px-3 transition duration-500 inline-flex items-center">
+          READ MORE
+          <svg class="w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+<!-- Sister Concerns End -->
+
+{% endblock %}
+
+{% comment %} 
+
+
+
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+Sister Concerns
+{% endblock title %}
+
+{% block content %}
+
+
+
+
+
+ <!-- Sister Concerns Start -->
+<div data-aos="flip-up" data-aos-duration="1200" id="sister-concerns" class="grid place-content-center my-4 md:my-12">
+  <h1 class="display-1 mb-4 text-2xl md:text-5xl uppercase text-white body-font font-semibold">
+    Sister Concerns
+  </h1>
+</div>
+
+<section class="container md:mx-auto grid grid-cols-2 md:grid-cols-3 px-2 mb-2">
+
+  <!-- Card 1 -->
+  <div data-aos="zoom-in-up" data-aos-duration="1100" class="w-full md:max-w-screen-xl mx-auto px-2 md:p-2 lg:px-8">
+    <div class="rounded hover:scale-105 drop-shadow-lg overflow-hidden flex flex-col max-w-xl mx-auto">
+      <a href="#">
+        <img class="aspect-square object-cover w-full xl:w-[30lvw]" src="https://rahmansonsgroup.com/media/sister_concerns/sister-concerns-image/Rahman-sons-S_80XwIA2.A.1-400x302.jpg" alt="Sister Concern 1" />
+      </a>
+      <div class="relative -mt-8 md:-mt-12 lg:-mt-16 px-1 md:px-4 lg:px-5 text-center p-2 lg:pt-5 pb-2 lg:pb-8 bg-white opacity-80 m-6 md:m-8 lg:m-10">
+        <a href="#" class="font-semibold text-[10px] md:text-[12px] lg:text-[14px] inline-block hover:text-indigo-600 transition duration-500 ease-in-out mb-0 md:mb-1 lg:mb-2">
+          Concern Name 1
+        </a>
+        <p class="text-gray-500 text-[8px] md:text-[10px] lg:text-[12px] mb-0 md:mb-1 lg:mb-2">
+          Country: Bangladesh
+        </p>
+        <p class="text-gray-600">
+          <a href="{% url 'sister_concerns' slug=i.slug %}" class="text-[7px] md:text-[8px] lg:text-[10px] text-white inline-flex bg-blue-700 hover:bg-blue-800 p-1 md:p-1 lg:p-2 transition duration-500 ease-in-out">
+            READ MORE
+            <svg class="hidden md:block w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+            </svg>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Duplicate Card 2 -->
+  <div data-aos="zoom-in-up" data-aos-duration="1200" class="w-full md:max-w-screen-xl mx-auto px-2 md:p-2 lg:px-8">
+    <div class="rounded hover:scale-105 drop-shadow-lg overflow-hidden flex flex-col max-w-xl mx-auto">
+      <a href="#">
+        <img class="aspect-square object-cover w-full xl:w-[30lvw]" src="https://rahmansonsgroup.com/media/sister_concerns/sister-concerns-image/DEWAN-SHAH-600x453_Q9nHdwY.jpg" alt="Sister Concern 2" />
+      </a>
+      <div class="relative -mt-8 md:-mt-12 lg:-mt-16 px-1 md:px-4 lg:px-5 text-center p-2 lg:pt-5 pb-2 lg:pb-8 bg-white opacity-80 m-6 md:m-8 lg:m-10">
+        <a href="#" class="font-semibold text-[10px] md:text-[12px] lg:text-[14px] inline-block hover:text-indigo-600 transition duration-500 ease-in-out mb-0 md:mb-1 lg:mb-2">
+          Concern Name 2
+        </a>
+        <p class="text-gray-500 text-[8px] md:text-[10px] lg:text-[12px] mb-0 md:mb-1 lg:mb-2">
+          Country: UAE
+        </p>
+        <p class="text-gray-600">
+          <a href="{% url 'sister_concerns' slug=i.slug %}" class="text-[7px] md:text-[8px] lg:text-[10px] text-white inline-flex bg-blue-700 hover:bg-blue-800 p-1 md:p-1 lg:p-2 transition duration-500 ease-in-out">
+            READ MORE
+            <svg class="hidden md:block w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+            </svg>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add more cards as needed -->
+
+</section>
+<!-- Sister Concerns End -->
+
+
+
+
+{% endblock %}
+ {% endcomment %}

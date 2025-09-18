@@ -1,0 +1,303 @@
+{% extends 'tbase.html' %}
+
+{% load static %}
+
+{% block title %}
+  Apartment Project
+{% endblock %}
+
+{% block content %}
+  <!-- property section start -->
+  <!-- Inline Tailwind styles are applied directly on elements below -->
+  <!-- Margin top -->
+  <div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">Apartment Project</p>
+  
+      <p class="pt-5 text-lg"><a href="/">Home</a> > Apartment Project</p>
+    </div>
+  </div>
+  <div class="bg-[#FAFAFA]">
+    <!-- Margin top -->
+    
+
+    <!-- Search area start -->
+    <div class="projects pt-5 hidden lg:block">
+      <div class="container mx-auto">
+        <div class="search-poject">
+          <div class="accordion">
+            <div class="card">
+              <div class="card-header" id="filter_heading">
+                <div class="text-left cursor-pointer border p-2 bg-[#FAFAFA]" data-bs-toggle="collapse" data-bs-target="#filter_form" aria-expanded="true" aria-controls="filter_form">
+                  Filter Projects
+                  <span class="float-right"><i class="fa fa-filter"></i></span>
+                </div>
+              </div>
+              <div class="md:px-6 py-2 border bg-white">
+                <div class="card-body">
+                  <form action="{% url 'apartmentproject' %}"  id="areaForm" method="GET">
+                    {% csrf_token %}
+                    <div class="space-y-6">
+                      <!-- Project Type -->
+                      <div class="md:flex items-center">
+                        <div class="md:w-1/6">
+                          <span class="font-semibold">Project Type</span>
+                        </div>
+                        <div class="w-5/6 space-x-4 md:flex md:flex-wrap">
+                          {% for project in projecttype %}
+                            <div class="form-check-inline">
+                             
+                              {% comment %} <label class="form-check-label" for="projecttype-{{ project.id }}">
+                                <input type="checkbox" data-filter="project_type" class="form-check-input filter-checkbox" id="projecttype-{{ project.id }}" value="{{ project.id }}" name="project_types" />
+                                {{ project.name }}
+                              </label> {% endcomment %}
+                              <label class="form-check-label" for="projecttype-{{ project.id }}">
+                                <input type="checkbox" 
+                                       data-filter="project_type" 
+                                       class="form-check-input filter-checkbox" 
+                                       id="projecttype-{{ project.id }}" 
+                                       value="{{ project.id }}" 
+                                       name="project_types" 
+                                       {% if project.id|stringformat:"s" in project_types %}checked{% endif %} />
+                                {{ project.name }}
+                              </label>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                      <!-- Property Type -->
+                      <div class="md:flex items-center">
+                        <div class="md:w-1/6">
+                          <span class="font-semibold">Properties Type</span>
+                        </div>
+                        <div class="w-5/6 space-x-4 md:flex flex-wrap">
+                          {% for property in propertytype %}
+                            <div class="form-check-inline">
+                              <label class="form-check-label" for="propertytype-{{ property.id }}">
+                                <input type="checkbox" data-filter="property_type" class="form-check-input filter-checkbox" value="{{ property.id }}" id="propertytype-{{ property.id }}"
+                                name ="property_types"
+                                {% if property.id|stringformat:"s" in property_types %}checked{% endif %}
+                                />
+                                {{ property.name }}
+                              </label>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                      <!-- Project Area -->
+                      <div class="md:flex items-center">
+                        <div class="md:w-1/6">
+                          <span class="font-semibold">Project Area</span>
+                        </div>
+                        <div class="w-5/6 space-x-4 md:flex">
+                          <div class="w-1/3 border">{{ form.division }}</div>
+                          <div class="w-1/3 border">{{ form.district }}</div>
+                          <div class="w-1/3 border">{{ form.sub_district }}</div>
+                        </div>
+
+
+                     
+                        
+                      </div>
+                    </div>
+                    {% comment %} <div class="flex justify-center  pt-4">
+                      <input type="submit" value="submit" class="bg-green-600 px-4 py-1 rounded-full text-white">
+                    </div> {% endcomment %}
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Search area end -->
+
+    <!-- Property section -->
+    <div class="properties-section-body mt-8">
+      <div class="container mx-auto">
+        <div class="row">
+          <div class="col-12">
+            <!-- Option bar Start -->
+            <div class="option-bar border p-3 bg-white">
+              <div class="flex justify-between items-center">
+                <h4 class="text-2xl font-semibold">
+                  <span class="mr-2"><i class="fa fa-th-large"></i></span>
+                  Apartment Properties
+                </h4>
+              </div>
+            </div>
+            <!-- Option bar end -->
+
+            <div class="clearfix"></div>
+
+            <!-- Property grid start -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6" id="filteredProject">
+              {% for feature_detail in feature_details %}
+                <div class="property d-flex flex-col border rounded-lg overflow-hidden shadow-lg">
+                  <!-- Property img -->
+                  <a href="{% url 'details_property' feature_detail.slug %}">
+                    <div class="property-img relative group">
+                      {% if feature_detail.post_pic %}
+                          <img src="{{ feature_detail.post_pic.url }}" class="w-full h-56 object-cover" alt="fp" />
+                      {% endif %}
+                      <div class="property-overlay absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <span class="overlay-link text-xl font-semibold">{{ feature_detail.post_title }}</span>
+                      </div>
+                    </div>
+                  
+                  </a>
+                  <!-- Property content -->
+                  <div class="property-content  flex-grow">
+                    <div class="info text-center pt-5">
+                      <!-- Title -->
+                      <h1 class="text-xl font-bold"><a href="{% url 'details_property' feature_detail.slug %}">{{ feature_detail.post_title }}</a></h1>
+                      <!-- Property address -->
+                      <h3 class="text-md text-gray-700 pt-3"><a href="{% url 'details_property' feature_detail.slug %}"><i class="fa fa-map-marker"></i> {{ feature_detail.post_location }}</a></h3>
+                    </div>
+
+                    <!-- Property footer -->
+                    <div class="property-footer flex justify-center mt-4 border p-4 gap-4">
+                      <span class="left"><a href=""><p class="text-md text-white hover:text-color p-1 px-4 hover:bg-blue-500 bg-color rounded-lg">Call</p></a></span>
+                      <span class="right"><a href="{% url 'details_property' feature_detail.slug %}"><p class="text-md text-white hover:text-color p-1 px-4 hover:bg-blue-500 bg-color rounded-lg">Details</p></a></span>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <!-- Property grid end -->
+
+            <!-- Pagination box start -->
+            <div class="pagination-box text-center mt-8">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination flex justify-center items-center space-x-2">
+                  {% if feature_details.has_previous %}
+                    <li class="page-item">
+                      <a class="page-link bg-gray-300 text-color py-2 px-4 rounded-md hover:bg-blue-500 hover:text-white" href="?page={{ feature_details.previous_page_number }}">Prev</a>
+                    </li>
+                  {% else %}
+                    <li class="page-item">
+                      <a class="disabled bg-gray-300 text-color py-2 px-4 rounded-md">Prev</a>
+                    </li>
+                  {% endif %}
+                  {% for i in paginator.page_range %}
+                    <li class="page-item {% if i == page_number %} bg-green-500 text-white {% endif %}">
+                      <a class="page-link py-2 px-4 rounded-md hover:bg-green-500" href="?page={{ i }}">{{ i }}</a>
+                    </li>
+                  {% endfor %}
+                  {% if feature_details.has_next %}
+                    <li class="page-item">
+                      <a class="page-link bg-gray-300 text-color py-2 px-4 rounded-md hover:bg-blue-500 hover:text-white" href="?page={{ feature_details.next_page_number }}">Next</a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </nav>
+            </div>
+            <!-- Pagination box end -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- property section end -->
+
+    <!-- Intro section start -->
+    <div class="intro-section mt-16 bg-color text-white py-10">
+      <div class="container mx-auto md:flex justify-between items-center md:space-y-0 space-y-6 px-2">
+        <div class="md:text-left text-center">
+          <h3 class="text-2xl font-semibold">Looking To Sell Or Rent Your Property?</h3>
+        </div>
+        <div class="md:text-right text-center">
+          <a class="btn-2 btn-white bg-white text-color hover:bg-[#ED1C24] hover:text-white py-2 px-4 rounded-full" href="{% url 'contactus' %}"><span>Get in Touch</span> <i class="arrow"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Intro section end -->
+  </div>
+
+  <script>
+    // When the division field changes, update the district field dynamically
+    document.getElementById('id_division').addEventListener('change', function() {
+      var divisionId = this.value;
+  
+      // Clear current district and sub-district options
+      document.getElementById('id_district').innerHTML = '<option value="">- select a district -</option>';
+      document.getElementById('id_sub_district').innerHTML = '<option value="">- select an area -</option>';
+  
+      if (divisionId) {
+        // AJAX request to get the districts from the correct URL
+        fetch(`/ajax/load_districts/?division=${divisionId}`)
+          .then(response => response.text())  // Get the response as text (HTML)
+          .then(html => {
+            document.getElementById('id_district').innerHTML = html;
+          });
+      }
+    });
+  
+    // When the district field changes, update the sub-district field dynamically
+    document.getElementById('id_district').addEventListener('change', function() {
+      var districtId = this.value;
+  
+      // Clear the current sub-district options
+      document.getElementById('id_sub_district').innerHTML = '<option value="">- select an area -</option>';
+  
+      if (districtId) {
+        // AJAX request to get the sub-districts from the correct URL
+        fetch(`/ajax/load_subdistricts/?district=${districtId}`)
+          .then(response => response.text())  // Get the response as text (HTML)
+          .then(html => {
+            document.getElementById('id_sub_district').innerHTML = html;
+          });
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('areaForm');
+      const checkboxes = document.querySelectorAll('.filter-checkbox');
+      const division = document.getElementById('id_division'); 
+      const district = document.getElementById('id_district');
+      const subDistrict = document.getElementById('id_sub_district'); 
+      
+
+      function submitForm() {
+          const formData = new FormData(form);
+          const urlParams = new URLSearchParams(formData).toString();
+  
+          fetch("{% url 'apartmentproject' %}?" + urlParams, {
+              method: 'GET',
+              headers: {
+                  'X-Requested-With': 'XMLHttpRequest',
+                  'Accept': 'application/json', 
+              }
+          })
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById('filteredProject').innerHTML = data.html;
+          })
+          .catch(error => {
+              console.error("Error:", error);
+          });
+      }
+  
+      checkboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', function () {
+              submitForm();
+          });
+      });
+      division.addEventListener('change', function () {
+          submitForm();
+      });
+  
+      district.addEventListener('change', function () {
+          submitForm();
+      });
+  
+      subDistrict.addEventListener('change', function () {
+          submitForm();
+      });
+  });
+  </script>
+{% endblock %}
+

@@ -1,0 +1,35 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+Our Certificate
+{% endblock %}
+
+{% block content %}
+<!-- Margin top -->
+<div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+  <div class="container mx-auto py-6 px-4">
+    <p class="text-4xl">Our Certificate</p>
+
+    <p class="pt-5 text-lg"><a href="/">Home</a> > Our Certificate</p>
+  </div>
+</div>
+  <div class="bg-[#FAFAFA]">
+    <div class="container mx-auto px-2">
+        <div class="py-10 space-y-4">
+         <p class="text-center text-4xl font-bold">Our Certifications</p>
+          {% for q in query  %}
+          <div class="lg:flex lg:gap-4 py-5">
+            <div class="lg:w-4/12">
+                <img src="{{q.image.url}}" alt="">
+            </div>
+            <div class="lg:w-8/12 space-y-2">
+                <p class="text-4xl">{{ q.title }}</p>
+                 <p>{{q.details|safe}}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+Land Wanted
+{% endblock %}
+
+{% block content %}
+
+
+<!-- Margin top -->
+<div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+  <div class="container mx-auto py-6 px-4">
+    <p class="text-4xl">Land Wanted</p>
+
+    <p class="pt-5 text-lg"><a href="/">Home</a> > Land Wanted</p>
+  </div>
+</div>
+  <div class="bg-[#FAFAFA]">
+    <div class="container mx-auto px-2">
+        <div class="py-10 space-y-4">
+          <div class="lg:flex lg:gap-4">
+            <div class="lg:w-1/2">
+                <img src="{{query.image.url}}" alt="">
+            </div>
+            <div class="lg:w-1/2 space-y-2">
+                <p class="text-4xl">{{ query.title }}</p>
+                 <p>{{query.details|safe}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+{% endblock %}

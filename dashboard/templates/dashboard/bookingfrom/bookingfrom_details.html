@@ -1,0 +1,142 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}
+Booking Details
+{% endblock title %}
+
+{% block content %}
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="form-head page-titles d-flex align-items-center">
+      <div class="mr-auto d-lg-block">
+        <h2 class="text-black font-w600">Real Estate Booking Details</h2>
+      </div>
+      <a href="{% url 'bookingfrom_view' %}" class="btn btn-primary rounded light mr-3">Back to List</a>
+    </div>
+
+    <div class="row bg-white p-4 rounded shadow-sm">
+      <!-- Personal Info -->
+      <div class="col-12 mb-4">
+        <h4 class="border-bottom pb-2">Personal Information</h4>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Booking ID:</strong>
+        <p>{{ query.id }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Full Name:</strong>
+        <p>{{ query.applicant_full_name }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Mother's Name:</strong>
+        <p>{{ query.mother_name }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Date of Birth:</strong>
+        <p>{{ query.date_of_birth }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Nationality:</strong>
+        <p>{{ query.nationality }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Religion:</strong>
+        <p>{{ query.religion }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Email:</strong>
+        <p>{{ query.email }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Permanent Address:</strong>
+        <p>{{ query.permanent_address }}</p>
+      </div>
+
+      <!-- Profession Info -->
+      <div class="col-12 mt-4 mb-2">
+        <h4 class="border-bottom pb-2">Professional Information</h4>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Profession:</strong>
+        <p>{{ query.profession }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Designation:</strong>
+        <p>{{ query.designation }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Organization:</strong>
+        <p>{{ query.organization }}</p>
+      </div>
+
+      <!-- Project Info -->
+      <div class="col-12 mt-4 mb-2">
+        <h4 class="border-bottom pb-2">Project Information</h4>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Residence Type:</strong>
+        <p>{{ query.residence_type }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Project Location:</strong>
+        <p>{{ query.project_location }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Total Project Area:</strong>
+        <p>{{ query.total_project_area }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Number of Shares:</strong>
+        <p>{{ query.number_of_share }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Total Price:</strong>
+        <p>৳ {{ query.total_price }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Per Share Price:</strong>
+        <p>৳ {{ query.per_share_price }}</p>
+      </div>
+
+      <div class="col-md-12">
+        <strong>Special Instructions:</strong>
+        <p>{{ query.instruction }}</p>
+      </div>
+
+      <!-- Legal -->
+      <div class="col-12 mt-4">
+        <h4 class="border-bottom pb-2">Legal</h4>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Agreed to Terms:</strong>
+        <p>{{ query.agree_terms|yesno:"Yes,No" }}</p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Submitted On:</strong>
+        <p>{{ query.submitted_on }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

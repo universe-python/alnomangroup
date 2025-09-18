@@ -1,0 +1,87 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}
+Feedback View
+{% endblock title %}
+
+{% block content %}
+  <div class="content-body">
+    <!-- row -->
+    <!-- row -->
+    <div class="container-fluid">
+      <div class="form-head page-titles d-flex align-items-center">
+        <div class="mr-auto d-lg-block">
+          <h2 class="text-black font-w600">Feedback View</h2>
+        </div>
+        <div class="mr-start d-lg-block"></div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="table-responsive table-hover fs-14">
+            <table class="table table-hover display mb-4 dataTablesCard card-table" id="example-5">
+              <thead>
+                <tr>
+                  <!--  <th>
+                                    <div class="custom-control custom-checkbox ml-2">
+                                        <input type="checkbox" class="custom-control-input" id="checkAll" required="">
+                                        <label class="custom-control-label" for="checkAll"></label>
+                                    </div>
+                                </th>  -->
+                  <th>ID</th>
+                  <th>property id</th>
+                  <th>User name</th>
+                  <th>Details</th>
+                  <th>Is active</th>
+                  <th>Date</th>
+                  <!-- <th>status</th> -->
+                  <th>Action</th>
+                </tr>
+
+                <!--  {% for object in fields %}
+                               {{object}}
+                                <th>
+                                {% for fieldname in object %}<td>{{ fieldname }}</td>{% endfor %}
+                                </th>
+                                
+                                <tr>
+                                {% for value in object.values %}<td>{{ value }}</td>{% endfor %}
+                                </tr>
+                            {% endfor %}  -->
+              </thead>
+              <tbody>
+                {% for i in feedback_view %}
+                  <tr>
+                    <td>
+                      {{ i.id }}  
+                      {% if i.status == 'pending' %}
+                      <sup class="warning">!</sup>
+                      {% endif %}
+                    </td>
+                    <td>{{ i.property_id }}</td>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.description }}</td>
+                    <td>
+                      {% if i.is_feedback_show %}
+                        <a href="{% url 'feedback_approved' i.id %}"><p class="btn btn-sm btn-success">Show</p></a>
+                      {% else %}
+                        <a href="{% url 'feedback_approved' i.id %}"><p class="btn btn-sm btn-danger">Hidden</p></a>
+                      {% endif %}
+                    </td>
+                    <td>{{ i.created }}</td>
+                    <!-- <td>{{ i.status }}</td> -->
+
+                    <td>
+                      <a href="{% url 'feedback_edit' i.id %}" class="text-primary h4 mr-1" data-bs-original-title="View" data-bs-toggle="tooltip"><i class="ti-eye"></i></a>
+                      <a href="javascript:void(0)" class="text-danger delete-link h4" data-url="{% url 'feedback_delete' i.id %}" data-bs-original-title="Delete" data-bs-toggle="tooltip"><i class="ti-trash"></i></a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

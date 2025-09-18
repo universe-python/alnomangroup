@@ -1,0 +1,54 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+  Career
+{% endblock %}
+
+{% block content %}
+<!-- Margin top -->
+<div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">Our Job Offers</p>
+  
+      <p class="pt-5 text-lg"><a href="/">Home</a> > Our Job Offers</p>
+    </div>
+  </div>
+
+<div class="container mt-24">
+    <div class="animate-text">
+        <h2 class="text-center mt-4 text-3xl font-bold">Our Job Offers</h2>
+        <hr class="my-4">
+    </div>
+    <div class="container text-[#1b0234]">
+        {% for c in career %}
+        <div class="card border-0 shadow-lg mx-auto my-4 pb-5 max-w-2xl">
+            <div class="card-body border-b">
+                <h3 class="text-base mb-5">{{ c.title }}</h3>
+                <p class="text-sm mt-[-10px]">Deadline is {{ c.end_date }}</p>
+                <p class="text-justify text-sm">{{ c.job_description|truncatechars_html:200|safe }}</p>
+                {% comment %} <a href="{% url 'career-detail' c.slug c.id %}" class="mt-[-10px] btn-sm bg-gradient-to-r from-[#7f31ff] to-[#4279f1] text-white py-2 px-4 rounded-md">Show details and Apply</a> {% endcomment %}
+                <a href="{% url 'career-detail' c.slug c.id %}" class="bg-color hover:bg-green-700  text-white py-2 px-4 rounded-md">Show details and Apply</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .animate-text {
+        background-image: linear-gradient(-225deg, #a00000 0%, #29B841 29%, #1148d7 67%, #fff800 100%);
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textanim 4s linear infinite;
+    }
+
+    @keyframes textanim {
+        to {
+            background-position: 200% center;
+        }
+    }
+</style>
+{% endblock content %}

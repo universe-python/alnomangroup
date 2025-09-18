@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Booking Now
+{% endblock title %}
+
+{% block content %}
+
+<!-- Booking 1 start -->
+<div class="contact-1 content-area-7">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title text-center">
+            <h1>Booking Now</h1>
+            <p>You can provide information what type properties are your choice</p>
+        </div>
+
+        <div class="bg-white">
+            <div class="row g-0">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-pad2">
+                    <!-- Contact form start -->
+                    <div class="contact-form contact-pad">
+                        <h3>Send us a Message</h3>
+                        <form method="POST" action="{% url 'booking_now' %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.name}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.email}}
+                                    </div>
+                                </div>
+                                <style>
+                                    .errorlist li{
+                                        color: red;
+                                    }
+
+                                    .prt{
+                                        color:#9da1a3;
+                                        padding: 12px;
+                                    }
+                                </style>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.phone}}
+                                       {{form.phone.errors}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.job_designation}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        {{form.property_type}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.property_size}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.property_location}}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                       {{form.roperty_description}}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="send-btn text-center">
+                                        <button type="submit" class="button-md button-theme btn-3">Booking Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Contact form end -->
+                </div>
+                {% comment %} <div class="col-lg-5 col-md-12 col-sm-12 col-pad2">
+                    <!-- Contact details start -->
+                    <div class="contact-details">
+                        <h3>Opening Hours</h3>
+                        <div class="ci-box d-flex">
+                            <div class="icon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            <div class="detail align-self-center">
+                                <h4>Office Address</h4>
+                                <p>20/F Green Road, Dhanmondi, Dhaka</p>
+                            </div>
+                        </div>
+                        <div class="ci-box d-flex">
+                            <div class="icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="detail align-self-center">
+                                <h4>Phone Number</h4>
+                                <p>
+                                    <a href="tel:0477-0477-8556-552">Office: 0477 8556 552</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="ci-box d-flex">
+                            <div class="icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div class="detail align-self-center">
+                                <h4>Email Address</h4>
+                                <p>
+                                    <a href="mailto:info@themevessel.com">info@themevessel.com</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="ci-box d-flex mb-30">
+                            <div class="icon">
+                                <i class="fa fa-fax"></i>
+                            </div>
+                            <div class="detail align-self-center">
+                                <h4>Fax:</h4>
+                                <p>
+                                    <a href="tel:0477-0477-8556-552">0477 8556 552</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <h3>Follow Us</h3>
+                        <div class="social-media clearfix">
+                            <div class="social-list">
+                                <div class="icon facebook">
+                                    <div class="tooltip">Facebook</div>
+                                    <span><i class="fa fa-facebook"></i></span>
+                                </div>
+                                <div class="icon twitter">
+                                    <div class="tooltip">Twitter</div>
+                                    <span><i class="fa fa-twitter"></i></span>
+                                </div>
+                                <div class="icon instagram">
+                                    <div class="tooltip">Instagram</div>
+                                    <span><i class="fa fa-instagram"></i></span>
+                                </div>
+                                <div class="icon github">
+                                    <div class="tooltip">Github</div>
+                                    <span><i class="fa fa-github"></i></span>
+                                </div>
+                                <div class="icon youtube mr-0">
+                                    <div class="tooltip">Youtube</div>
+                                    <span><i class="fa fa-youtube"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Contact details end -->
+                </div> {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Booking 1 end -->
+{% endblock content %}

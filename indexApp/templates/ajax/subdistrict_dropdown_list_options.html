@@ -1,0 +1,7 @@
+
+
+
+<option value="">- select a area -</option>
+{% for x in subdistricts %}
+<option value="{{ x.pk }}">{{ x.name }}</option>
+{% endfor %}

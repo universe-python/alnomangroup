@@ -1,0 +1,235 @@
+{% load static %}
+<div class="relative text-white">
+  <!-- Background Image -->
+  <div class="absolute inset-0 bg-[url('https://res.cloudinary.com/dnvmj9pvk/image/upload/v1753172089/real-estate_nsydxw.webp')] bg-cover bg-center"></div>
+
+  <!-- Blue Overlay -->
+  <div class="absolute inset-0 bg-[#2E67AF]/80"></div>
+
+  <!-- Content Layer -->
+  <div class="relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-4 py-10 text-white">
+      <div>
+        <a class="px-0" href="{% url 'home' %}">
+          {% if con_website_logo.logo %}
+            <img src="{{ con_website_logo.footer_logo.url }}" class="h-20" alt="logo" />
+          {% endif %}
+        </a>
+
+        
+
+        {% comment %} {% if con_website_logo.address %}
+          <div class="mt-4 flex gap-2">
+            <i class="fas fa-map-marker-alt mr-2 pt-2"></i>
+            <a href="https://maps.app.goo.gl/G19V1XywcRpRS3pa7" target="_blank">Address: {{ con_website_logo.address }}</a>
+          </div>
+        {% endif %} {% endcomment %}
+
+        <p class="text-white mb-4 mt-4">
+          Ataturk Tower,<br>
+          22 Kamal Ataturk Avenue,<br>
+          Banani Commercial Area,<br>
+          Dhaka, Bangladesh
+        </p>
+
+
+
+
+
+        <div class="mt-2 space-y-2">
+          {% if con_website_logo.phone %}
+            <span class="block"><i class="fa fa-phone mr-2"></i> Phone: {{ con_website_logo.phone }}</span>
+          {% endif %}
+          {% if con_website_logo.phone2 %}
+            <span class="block"><i class="fa fa-phone mr-2"></i> Phone: {{ con_website_logo.phone2 }}</span>
+          {% endif %}
+          {% if con_website_logo.phone3 %}
+            <span class="block"><i class="fa fa-phone mr-2"></i> Phone: {{ con_website_logo.phone3 }}</span>
+          {% endif %}
+          {% if con_website_logo.phone4 %}
+            <span class="block"><i class="fa fa-phone mr-2"></i> Phone: {{ con_website_logo.phone4 }}</span>
+          {% endif %}
+        </div>
+
+
+
+        <ul class="inline-flex space-x-3 text-lg pt-5">
+          <p>Follow us</p>
+          {% for i in social_link %}
+            <li class="transform transition-all duration-500 hover:scale-125">
+              <a href="{{ i.facebook_social_link }}" class="hover:text-blue-800"><img src="{% static 'indexApp/images/facebook.png' %}" alt="" class="h-6" /></a>
+            </li>
+            <li class="transform transition-all duration-500 hover:scale-125">
+              <a href="{{ i.twitter_social_link }}" class="hover:text-blue-800"><img src="{% static 'indexApp/images/twiter.png' %}" alt="" class="h-6" /></a>
+            </li>
+            <li class="transform transition-all duration-500 hover:scale-125">
+              <a href="{{ i.linkedin_social_link }}" class="hover:text-blue-800"><img src="{% static 'indexApp/images/linkedin.png' %}" alt="" class="h-6" /></a>
+            </li>
+            <li class="transform transition-all duration-500 hover:scale-125">
+              <a href="{{ i.instagram_social_link }}" class="hover:text-blue-800"><img src="{% static 'indexApp/images/instagram.png' %}" alt="" class="h-6" /></a>
+            </li>
+            <li class="transform transition-all duration-500 hover:scale-125">
+              <a href="{{ i.youtube_social_link }}" class="hover:text-blue-800"><img src="{% static 'indexApp/images/youtube.png' %}" alt="" class="h-6" /></a>
+            </li>
+            {% if con_website_logo.email %}
+              <li class="transform transition-all duration-500 hover:scale-125">
+                <a href="mailto:{{ con_website_logo.email }}" class="hover:text-blue-800"><img src="{% static 'indexApp/images/google.png' %}" alt="" class="h-6" /></a>
+              </li>
+            {% endif %}
+            {% if con_website_logo.email2 %}
+              <li class="transform transition-all duration-500 hover:scale-125">
+                <a href="mailto:{{ con_website_logo.email2 }}" class="hover:text-blue-800"><img src="{% static 'indexApp/images/google.png' %}" alt="" class="h-6" /></a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-xl font-semibold">Corporate</p>
+        <ul class="text-sm space-y-2 pt-5">
+          <li>
+            <a class="hover:underline flex {% if request.path == '/about/' %}underline {% endif %}" href="{% url 'about' %}">
+             
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 hover:text-white text-white text-xs mr-0">
+              <path d="M8 5l8 7-8 7V5z" />
+            </svg>
+              About Us</a>
+          </li>
+          <li>
+            <a class="hover:underline flex {% if request.path == '/mission-vission' %}underline{% endif %}" href="{% url 'mission_vission' %}">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 hover:text-white text-white text-xs mr-0">
+              <path d="M8 5l8 7-8 7V5z" />
+            </svg>
+              
+              Mission & Vision</a>
+          </li>
+          <li>
+            <a class="hover:underline flex {% if request.path == '/md-message' %}underline{% endif %}" href="{% url 'md_message' %}">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 hover:text-white text-white text-xs mr-0">
+              <path d="M8 5l8 7-8 7V5z" />
+            </svg>
+              MD Message</a>
+          </li>
+          <li>
+            <a class="hover:underline flex {% if request.path == '/corparate-structure' %}underline{% endif %}" href="{% url 'corparate_structure' %}">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 hover:text-white text-white text-xs mr-0">
+              <path d="M8 5l8 7-8 7V5z" />
+            </svg>Corporate Structure</a>
+          </li>
+          <li>
+            <a class="hover:underline flex {% if request.path == '/contact' %}underline{% endif %}" href="{% url 'career' %}"><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 hover:text-white text-white text-xs mr-0">
+              <path d="M8 5l8 7-8 7V5z" />
+            </svg> Career Opportunity</a>
+          </li>
+          <li>
+            <a class="hover:underline flex {% if request.path == '/awards' %}underline{% endif %}" href="{% url 'award' %}"><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 hover:text-white text-white text-xs mr-0">
+              <path d="M8 5l8 7-8 7V5z" />
+            </svg> Awards</a>
+          </li>
+          <li>
+            <a class="hover:underline flex {% if request.path == '/land-wanted' %}underline{% endif %}" href="{% url 'land_wanted' %}"><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 hover:text-white text-white text-xs mr-0">
+              <path d="M8 5l8 7-8 7V5z" />
+            </svg>Land Wanted</a>
+          </li>
+          <li>
+            <a class="hover:underline flex {% if request.path == '/our-certificate' %}underline{% endif %}" href="{% url 'our_certificate' %}">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 hover:text-white text-white text-xs mr-0">
+              <path d="M8 5l8 7-8 7V5z" />
+            </svg>Certification</a>
+          </li>
+          <li>
+            <a class="hover:underline flex {% if request.path == '/testimonial' %}underline{% endif %}" href="{% url 'testimonials' %}"><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 hover:text-white text-white text-xs mr-0">
+              <path d="M8 5l8 7-8 7V5z" />
+            </svg>Testimonials</a>
+          </li>
+          <li>
+            <a class="hover:underline flex {% if request.path == '/testimonial' %}underline{% endif %}" href="{% url 'privacy_policy' %}"><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 hover:text-white text-white text-xs mr-0">
+              <path d="M8 5l8 7-8 7V5z" />
+            </svg>Privacy Policy & Sitemap</a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-xl font-semibold uppercase">Property Collections</p>
+        <div class="grid grid-cols-3 gap-x-5 pt-5">
+          <p class="text-sm font-semibold py-1 uppercase hover:underline cursor-pointer">
+            <a href="{% url 'landproject' %}">Land</a>
+          </p>
+          <p class="text-sm font-semibold py-1 uppercase hover:underline cursor-pointer">
+            <a href="{% url 'apartmentproject' %}">Apartment</a>
+          </p>
+          <a class="text-sm font-semibold py-1 uppercase hover:underline cursor-pointer">Location</a>
+
+          <div class="space-y-2 pt-3">
+            {% for project in projecttype %}
+              <a href="{% url 'landproject' %}?project_types={{ project.id }}" class="block text-sm py-1 hover:underline"><i class="fa-solid fa-circle text-white text-xs mr-2"></i> {{ project.name }}</a>
+            {% endfor %}
+          </div>
+
+          <div class="space-y-2 pt-3">
+            {% for project in projecttype %}
+              <a href="{% url 'apartmentproject' %}?project_types={{ project.id }}" class="block text-sm py-1 hover:underline"><i class="fa-solid fa-circle text-white text-xs mr-2"></i> {{ project.name }}</a>
+            {% endfor %}
+          </div>
+
+          <div class="space-y-2 pt-3">
+            {% for project in subdistrict %}
+              <a href="{% url 'apartmentproject' %}?sub_district={{ project.id }}" class="block text-sm py-1 hover:underline"><i class="fa-solid fa-circle text-white text-xs mr-2"></i> {{ project.name }}</a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 bg-black text-white gap-4 px-4 py-5">
+  <div class="flex gap-3">
+    <div>
+    <details>
+      <summary>Copyright © 2025 AL-Noman Group Properties | All rights reserved.</summary>
+      <p>All the content and creatives on this website are the property of AL-Noman Group Properties.</p>
+    </details>
+  </div>
+  {% comment %} <a href="{% url 'privacy_policy' %}"><p>Privacy Policy</p></a> |<p>Sitemap</p> {% endcomment %}
+  </div>
+
+  
+
+  <div class="lg:flex lg:justify-end">
+    Designed & Developed by <a href="#">Universe Soft Tech</a>.
+  </div>
+</div>

@@ -1,0 +1,34 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+MD Messages
+{% endblock %}
+
+{% block content %}
+
+  <!-- Margin top -->
+<div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+  <div class="container mx-auto py-6 px-4">
+    <p class="text-4xl">MD Messages</p>
+
+    <p class="pt-5 text-lg"><a href="/">Home</a> > MD Messages</p>
+  </div>
+</div>
+
+  <div class="container mx-auto px-2">
+    <div class="pt-10 space-y-4">
+        <p class="text-center text-4xl">{{query.title}}</p>
+        <div class="flex {% if query.is_center %} justify-center {% endif %} py-5">
+          
+          {% if query.image %}
+            
+          <img src="{{query.image.url}}" alt="" class="w-72 h-60">
+          {% endif %}
+            
+        </div>
+
+      <p>{{query.details|safe}}</p>
+    </div>
+  </div>
+{% endblock %}

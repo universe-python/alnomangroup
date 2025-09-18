@@ -1,0 +1,181 @@
+<style>
+    .property .property-content .facilities-list li {
+        width: 100%;
+        float: none;
+        font-size: 15px;
+        line-height: 29px;
+    }
+
+    .property .property-content .info {
+        padding: 30px 25px 25px;
+        text-align: center;
+    }
+
+    .overlay-link:hover {
+        background: none;
+        border: none;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #166935;
+        border-color: #0d6efd;
+    }
+
+    .property-content p {
+        margin: 10px 0 20px;
+        padding: 5px;
+        border-radius: 5px;
+        background: #166935;
+        display: inline-block;
+        width: 60px;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .overlay-link:hover {
+        background: none;
+        border: none;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #166935;
+        border-color: #0d6efd;
+    }
+
+    .property-footer span {
+        padding: 20px;
+    }
+
+    .property-footer p:hover {
+        color: green;
+        background-color: white;
+
+    }
+
+    .pagination>li>a:hover {
+        background: #4e5739;
+    }
+
+    .pagination>li>a:hover {
+        background: #4e5739;
+    }
+
+    .projects .search-poject {
+        width: 100;
+        height: auto;
+        margin: 0 auto;
+        padding-bottom: 20px;
+        background: #ffffff;
+    }
+
+    .projects .search-poject .card-body {
+        padding: 0 35px;
+        padding-bottom: 10px;
+        background: url(../images/about/sale_house.svg) no-repeat center right 10%;
+        background-size: 20%;
+    }
+
+    .projects .search-poject .card-body button {
+        margin-left: -15px;
+    }
+
+    .projects .search-poject .card-header {
+        cursor: pointer;
+        padding: 3px 20px;
+    }
+
+    .projects .search-poject .row {
+        line-height: 3rem;
+        font-size: 15px;
+    }
+
+    .projects .search-poject .custom-input {
+        position: relative;
+        margin-right: 10px;
+    }
+
+    .projects .search-poject .area-select {
+        position: relative;
+        width: 70%;
+        margin: 0 20px;
+    }
+
+    .projects .search-poject .area-select .custom-select {
+        font-size: 15px;
+        margin: 0 20px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    input.form-check-input.project_phase,
+    .project_type {
+        /* padding-top: 26px; */
+        margin-top: 15px;
+        margin-right: 5px;
+    }
+
+    .card {
+        margin-top: 75px;
+    }
+
+    .float-right {
+        float: right;
+    }
+</style>
+
+<!-- Property grid start -->
+{% for feature_detail in project %}
+<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 wow fadeInUp delay-03s d-flex align-items-stretch">
+    <!-- Property start -->
+    <a href="{% url 'land_details_property' feature_detail.id %}">
+        <div class="property fp2">
+            <!-- Property img -->
+            <div class="property-img">
+                {% if feature_detail.post_pic %}
+                <img src="{{feature_detail.post_pic.url}}" width="400px" height="250px" alt="fp">
+                {% endif %}
+                <div class="property-overlay">
+                    <div class="overlay-link">{{feature_detail.post_title}}</div>
+                </div>
+            </div>
+    </a>
+    <!-- Property content -->
+    <div class="property-content">
+        <!-- info -->
+        <div class="info">
+            <!-- title -->
+            <h1 class="title">
+                <a href="{% url 'land_details_property' feature_detail.id %}">{{feature_detail.post_title}}</a>
+            </h1>
+            <!-- Property address -->
+            <h3 class="property-address">
+                <a href="{% url 'land_details_property' feature_detail.id %}">
+                    <i class="fa fa-map-marker"></i>{{feature_detail.post_location}}
+                </a>
+            </h3>
+            <!-- Facilities List -->
+        </div>
+        <!-- Property footer -->
+        <div class="property-footer">
+            <span class="left">
+                <a href="">
+                    <p>Call</p>
+                </a>
+            </span>
+            <span class="right">
+                <a href="{% url 'land_details_property' feature_detail.id %}">
+                    <p>Details</p>
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+<!-- Property end -->
+</div>
+{% endfor %}
+<!-- Property grid end -->

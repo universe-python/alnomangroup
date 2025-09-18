@@ -1,0 +1,71 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+  {{ single_blog.title }}
+{% endblock %}
+
+{% block content %}
+  <!-- Header Banner -->
+  <div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">Blog</p>
+      <p class="pt-20 text-lg">
+        <a href="/">Home</a> &gt; Blog
+      </p>
+    </div>
+  </div>
+
+  <!-- Blog Content Layout -->
+  <div class="container mx-auto px-4 my-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Main Blog Content -->
+      <div class="col-span-1 lg:col-span-8">
+        {% if single_blog.blog_img %}
+          <img src="{{ single_blog.blog_img.url }}" alt="blog-1" class="w-full h-auto rounded-lg shadow-lg mb-6 object-cover" />
+        {% endif %}
+        <h3 class="text-2xl font-semibold mb-4">{{ single_blog.title }}</h3>
+        <ul class="post-meta mb-6 flex space-x-6 text-sm text-gray-500">
+          <li>
+            <i class="fa fa-user-o"></i> admin
+          </li>
+          <li>
+            <i class="fa fa-calendar-check-o"></i> {{ single_blog.get_date }}
+          </li>
+        </ul>
+        <div class="text-lg leading-relaxed text-gray-700">{{ single_blog.details|safe }}</div>
+
+        <!-- Related Blogs for Mobile/Tablet -->
+        <div class="lg:hidden mt-12 border p-2 shadow-lg">
+          <h4 class="font-semibold text-lg mb-4">Related Blogs</h4>
+          <div class="space-y-4">
+            {% for blog in related_blogs %}
+              <a href="{% url 'read-more' blog.slug %}" class="flex items-center gap-3 bg-white shadow p-3 rounded hover:bg-gray-100 transition">
+                {% if blog.blog_img %}
+                  <img src="{{ blog.blog_img.url }}" alt="{{ blog.title }}" class="w-16 h-16 object-cover rounded" />
+                {% endif %}
+                <p class="text-sm font-medium">{{ blog.title|truncatechars:50 }}</p>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Sticky Related Blogs (Desktop) -->
+      <aside class="hidden lg:block lg:col-span-4 ">
+        <div class="sticky top-20 max-h-[80vh] overflow-y-auto space-y-4 pr-1 border p-2 shadow-lg">
+          <h4 class="font-semibold text-lg mb-2">Related Blogs</h4>
+
+          {% for blog in related_blogs %}
+            <a href="{% url 'read-more' blog.slug %}" class="flex items-center gap-3 bg-white shadow p-3 rounded hover:bg-gray-100 transition">
+              {% if blog.blog_img %}
+                <img src="{{ blog.blog_img.url }}" alt="{{ blog.title }}" class="w-16 h-16 object-cover rounded" />
+              {% endif %}
+              <p class="text-sm font-medium">{{ blog.title|truncatechars:50 }}</p>
+            </a>
+          {% endfor %}
+        </div>
+      </aside>
+    </div>
+  </div>
+{% endblock %}

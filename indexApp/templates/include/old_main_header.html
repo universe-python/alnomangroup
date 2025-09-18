@@ -1,0 +1,552 @@
+<!-- Main header start -->
+{% load static %}
+{% load menu_filter %}
+<style>
+
+    /* ================================== *\ Mediaqueries \* ================================== */
+    @media (min-width: 992px) {
+        .hide {
+        display: none;
+        opacity: 0;
+    }
+
+    .show {
+        display: block;
+        opacity: 1;
+    }
+
+    #Anutrickz_translateBTN {
+        position: absolute;
+        top: 6px;
+        right: 33px;
+        z-index: 999999;
+    }
+
+    #Anutrickz_translateBTN svg {
+        width: 24px;
+        height: 24px
+    }
+
+    #ATLang_list {
+        width: 10rem;
+        right: 0px;
+        box-shadow: 0 0 15px rgb(0 0 0 / 7%);
+        border-radius: 0.5rem;
+        position: absolute;
+        z-index: 9;
+        background: #fff;
+        top: 44px;
+        color: #000;
+    }
+
+    #ATLang_list li {
+        list-style: none;
+        line-height: 2.rem;
+        font-size: .875rem;
+        font-weight: 600;
+        cursor: pointer;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+    }
+
+    #ATLang_list ul {
+        margin: 0 auto
+    }
+
+    #Anutrickz_translateBTN.hover #ATLang_list {
+        display: block
+    }
+
+    .language-active {
+        color: green;
+    }
+
+    .language-list {
+        cursor: pointer;
+        margin: 3px;
+        align-items: center
+    }
+
+    #goog-gt-tt,
+    .goog-te-banner-frame {
+        display: none !important
+    }
+
+    #google_translate_element {
+        position: absolute;
+        bottom: calc(53px + 16px);
+        right: 16px !important;
+    }
+
+    .goog-te-gadget {
+        font-family: Roboto, 'Open Sans', sans-serif !important;
+        text-transform: uppercase;
+    }
+
+    .goog-te-gadget-simple {
+        background-color: rgba(255, 255, 255, 0.20) !important;
+        border: 1px solid rgba(255, 255, 255, 0.50) !important;
+        padding: 8px !important;
+        border-radius: 4px !important;
+        font-size: 1rem !important;
+        line-height: 2rem !important;
+        display: inline-block;
+        cursor: pointer;
+        zoom: 1;
+    }
+
+    .goog-te-menu2 {
+        max-width: 100%;
+    }
+
+    .goog-te-menu-value {
+        color: #fff !important;
+    }
+
+    .goog-te-menu-value:before {
+        font-family: 'Material Icons';
+        content: "\E927";
+        margin-right: 16px;
+        font-size: 2rem;
+        vertical-align: -10px;
+    }
+
+    .goog-te-menu-value span:nth-child(5) {
+        display: none;
+    }
+
+    .goog-te-menu-value span:nth-child(3) {
+        border: none !important;
+        font-family: 'Material Icons';
+    }
+
+    .goog-te-menu-value span:nth-child(3):after {
+        font-family: 'Material Icons';
+        content: "\E5C5";
+        font-size: 1.5rem;
+        vertical-align: -6px;
+    }
+
+    .goog-te-gadget-icon {
+        background-image: url(https://placehold.it/32) !important;
+        background-position: 0px 0px;
+        height: 32px !important;
+        width: 32px !important;
+        margin-right: 8px !important;
+        display: none;
+    }
+
+    .goog-te-banner-frame.skiptranslate {
+        display: none !important;
+    }
+
+    body {
+        top: 0px !important;
+    }
+
+    }
+
+    @media (max-width: 992px) {
+
+    .show {
+        display: block;
+        opacity: 1;
+    }
+
+    #Anutrickz_translateBTN {
+        position: absolute;
+        /* top: 6px; */
+        right: 33px;
+        z-index: 999999;
+    }
+
+    #Anutrickz_translateBTN svg {
+        width: 24px;
+        height: 24px
+    }
+
+    #ATLang_list {
+        width: 10rem;
+        right: 0px;
+        box-shadow: 0 0 15px rgb(0 0 0 / 7%);
+        border-radius: 0.5rem;
+        position: absolute;
+        z-index: 9;
+        background: #fff;
+        top: 4px;
+        color: #000;
+    }
+
+    #ATLang_list li {
+        list-style: none;
+        line-height: 2.rem;
+        font-size: .875rem;
+        font-weight: 600;
+        cursor: pointer;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+    }
+
+    #ATLang_list ul {
+        margin: 0 auto
+    }
+
+    #Anutrickz_translateBTN.hover #ATLang_list {
+        display: block
+    }
+
+    .language-active {
+        color: green;
+    }
+
+    .language-list {
+        cursor: pointer;
+        margin: 3px;
+        align-items: center
+    }
+
+    #goog-gt-tt,
+    .goog-te-banner-frame {
+        display: none !important
+    }
+
+    #google_translate_element {
+        position: absolute;
+        bottom: calc(53px + 16px);
+        right: 16px !important;
+    }
+
+    .goog-te-gadget {
+        font-family: Roboto, 'Open Sans', sans-serif !important;
+        text-transform: uppercase;
+    }
+
+    .goog-te-gadget-simple {
+        background-color: rgba(255, 255, 255, 0.20) !important;
+        border: 1px solid rgba(255, 255, 255, 0.50) !important;
+        padding: 8px !important;
+        border-radius: 4px !important;
+        font-size: 1rem !important;
+        line-height: 2rem !important;
+        display: inline-block;
+        cursor: pointer;
+        zoom: 1;
+    }
+
+    .goog-te-menu2 {
+        max-width: 100%;
+    }
+
+    .goog-te-menu-value {
+        color: #fff !important;
+    }
+
+    .goog-te-menu-value:before {
+        font-family: 'Material Icons';
+        content: "\E927";
+        margin-right: 16px;
+        font-size: 2rem;
+        vertical-align: -10px;
+    }
+
+    .goog-te-menu-value span:nth-child(5) {
+        display: none;
+    }
+
+    .goog-te-menu-value span:nth-child(3) {
+        border: none !important;
+        font-family: 'Material Icons';
+    }
+
+    .goog-te-menu-value span:nth-child(3):after {
+        font-family: 'Material Icons';
+        content: "\E5C5";
+        font-size: 1.5rem;
+        vertical-align: -6px;
+    }
+
+    .goog-te-gadget-icon {
+        background-image: url(https://placehold.it/32) !important;
+        background-position: 0px 0px;
+        height: 32px !important;
+        width: 32px !important;
+        margin-right: 8px !important;
+        display: none;
+    }
+
+    .goog-te-banner-frame.skiptranslate {
+        display: none !important;
+    }
+
+    body {
+        top: 0px !important;
+    }
+
+    }
+</style>
+
+<style>
+    .custom_icon i {
+        background: #2802ff;
+        padding: 10px;
+        border-radius: 5px;
+        color: red;
+    }
+
+    .custom_icon i .fa {
+        background: #3b5998;
+        padding: 10px;
+        border-radius: 5px;
+        color: red;
+    }
+
+    i.fa.fa-facebook,
+    i.fa.fa-twitter {
+        background: #3b5998;
+        color: white;
+    }
+
+    i.fa.fa-twitter {
+        background: #00acee;
+        color: white;
+    }
+
+    i.fa.fa-linkedin {
+        background: #0072b1;
+        color: white;
+    }
+
+    i.fa.fa-youtube {
+        background: #FF0000;
+        color: white;
+    }
+    /* i.fa.fa-instagram {
+    color: #FF0000;
+    font-size: 18px;
+    padding: 8px 9px;
+} */
+
+</style>
+
+
+
+
+<header class="top-header th10 d-none d-lg-block top-header-5" id="top-header-1">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-6 col-md-8 col-sm-7 col-7">
+                <div class="list-inline">
+                    <a href="tel:+55-4XX-634-7071"><i class="fa fa-phone"></i>Need Support? (+880) 1711545557</a>
+                    <!-- <a href="tel:info@themevessel.com"><i class="fa fa-envelope"></i>info@themevessel.com</a> -->
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-5 col-5">
+                <ul class="top-social-media pull-right">
+                    
+                    {% for i in social_link %}   
+                    <li class="custom_icon">
+
+                        <a href="{{i.facebook_social_link}}"><i class="fa fa-facebook"></i></a>
+                        <a href="{{i.twitter_social_link}}"> <i class="fa fa-twitter"></i></a>
+                        <a href="{{i.linkedin_social_link}}"><i class="fa fa-linkedin"></i></a>
+                        <a href="{{i.instagram_social_link}}"><i class="fa fa-instagram"></i></a>
+                        <a href="{{i.youtube_social_link}}"><i class="fa fa-youtube"></i></a>
+                        
+
+                    </li>
+                    {% endfor %}
+                    <!-- <li>
+                        <a href="login.html" class="sign-in"><i class="fa fa-book"></i> Booking Now</a>
+                    </li> -->
+                </ul>
+            </div>
+            <!-- <div class="col-lg-2">
+                <div id="google_translate_element"></div>
+            </div> -->
+            <div class="col-lg-2">
+
+                <div id='Anutrickz_translateBTN'><button class="btn btn-danger">Language</button>
+                    <div class='hide' id='ATLang_list'>
+                        <ul>
+                            <li class='language-list' data-google-lang='en'>English</li>
+                            <li class='language-list' data-google-lang='bn'>ব&#2494;&#2434;ল&#2494;</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+<!-- Top header end -->
+
+<!-- Main header start -->
+<header class="main-header sticky-header header-with-top2 shadow py-3 main-header-7" id="main-header-2">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'indexApp/images/logo.png' %}" height="60px" alt="logo">
+            </a>
+            <button class="navbar-toggler" id="drawer" type="button">
+                <span class="fa fa-bars"></span>
+            </button>
+
+            <div class="navbar-collapse collapse w-100 justify-content-center" id="navbar">
+                <button style="background-color: #01126b; border:1px solid rgb(255, 255, 255)" type="button"
+                    class="btn btn-success"><a href="{% url 'booking_now' %}"
+                        style="color:white; text-transform:uppercase;font-size:16px;font-weight: 600">Booking
+                        Now</a></button>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="{% url 'home' %}" id="navbarDropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Properties
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url 'land_project' %}">Land Project</a></li>
+                            <li><a class="dropdown-item" href="{% url 'apartment_project' %}">Apartment Project</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink6" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Other Concerns
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            {% for i in service_type %}
+                                <li><a class="dropdown-item" href="{% url 'venture_service' i.id %}">{{i.name}}</a></li>
+                            {% endfor %}
+                           
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown megamenu-li">
+                        <a class="nav-link dropdown-toggle" href="{% url 'gallery' %}" id="dropdown01" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Gallery</a>
+                        <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url 'gallery' %}">Gallary</a></li> -->
+                            <!-- <li><a class="dropdown-item" href="agent-listing-grid.html">Project Image</a></li> -->
+                            <!-- <li><a class="dropdown-item" href="{% url 'video' %}">Video Gallary</a></li>
+                        </ul> -->
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink5" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Get in Touch
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url 'csr' %}">CSR</a></li>
+                            <li><a class="dropdown-item" href="{% url 'career' %}">Career</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ourteam' %}">Our Team</a></li>
+                            <li><a class="dropdown-item" href="{% url 'notice' %}">Notice</a></li>
+                            <li><a class="dropdown-item" href="{% url 'contactus' %}">Contact Us</a></li>
+                        </ul>
+
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'blog' %}" class="nav-link submit-property btn-5"> Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'about' %}" class="nav-link submit-property btn-5"> About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- Main header end -->
+
+<!-- Sidenav start -->
+<nav id="sidebar" class="nav-sidebar">
+    <!-- Close btn-->
+    <div id="dismiss">
+        <i class="fa fa-close"></i>
+    </div>
+    <div class="sidebar-inner">
+        <div class="sidebar-logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'indexApp/images/hrm.png' %}" alt="sidebarlogo">
+            </a>
+            <button style="background-color: #01126b; border:1px solid rgb(255, 255, 255);margin-right: 60px;top: 30px;" type="button"
+                class="btn btn-success"><a href="{% url 'booking_now' %}"
+                    style="color:white; text-transform:uppercase;font-size:13px;font-weight: 600">Booking
+                    Now</a></button>
+        </div>
+        <div class="sidebar-navigation">
+            <h3 class="heading">Pages</h3>
+            <ul class="menu-list mb-4">
+                <li><a href="{% url 'home' %}" class="active pt0">Home</a>
+
+                </li>
+                <li>
+                    <a href="#">Properties<em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li>
+                            <a href="{% url 'land_project' %}">Land Project</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'apartment_project' %}"> Apartment Project</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Other Concerns<em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        {% for i in service_type %}
+                            <li><a class="dropdown-item" href="{% url 'venture_service' i.id %}">{{i.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="{% url 'gallery' %}">Gallary<em class="fa fa-chevron-down"></em> </a>
+                    <!-- <ul>
+                        <li>
+                            <a href="{% url 'gallery' %}">Gallery</a>
+
+                        </li>
+                        <li>
+                            <a href="{% url 'video' %}">Video</a>
+                        </li>
+                    </ul> -->
+                </li>
+                <li>
+                    <a href="#">Get In Touch<em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li><a class="dropdown-item" href="{% url 'career' %}">Career</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ourteam' %}">Our Team</a></li>
+                        <li><a class="dropdown-item" href="{% url 'notice' %}">Notice</a></li>
+                        <li><a class="dropdown-item" href="{% url 'contactus' %}">Contact Us</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{% url 'blog' %}">Blog</a>
+                </li>
+                <li>
+                    <a href="{% url 'about' %}">About</a>
+                </li>
+                <div id='Anutrickz_translateBTN' class="">
+                    <div class='' id='ATLang_list'>
+                        <ul class="d-flex">
+                            <li class='language-list btn-info' data-google-lang='en'>English</li>
+                            <li class='language-list btn-primary' data-google-lang='bn'>ব&#2494;&#2434;ল&#2494;</li>
+                        </ul>
+                    </div>
+                </div>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<!-- Sidenav end -->

@@ -1,0 +1,155 @@
+{% extends 'tbase.html' %}
+
+{% load static %}
+{% load forloop_counter %}
+
+{% block title %}
+  Image Gallery
+{% endblock %}
+
+{% block content %}
+  <!-- Margin top -->
+  <div class="text-white pt-40" style="background-image: url('https://res.cloudinary.com/dnvmj9pvk/image/upload/v1753173742/company-profile_dbcjf5.jpg');">
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">Image Gallery</p>
+
+      <p class="pt-5 text-lg">
+        <a href="/">Home</a> > Image Gallery
+      </p>
+    </div>
+  </div>
+  <div class="container mx-auto py-10">
+  <!-- Gallery Grid -->
+<div id="gallery" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-16 px-8">
+    {% for i in query %}
+
+        <a class="card group relative shadow-lg" data-group="{{ i.img_type|lower }}" href="#">
+            {% if i.img %}
+                <img id="myImg{{ forloop.counter }}" src="{{ i.img.url }}" class="h-72 w-auto rounded-lg object-contain cursor-pointer transition duration-300 ease-in-out transform group-hover:opacity-70" alt="{{ i.title }}" />
+            {% endif %}
+            {% if i.title %}
+               <div class="absolute bottom-0 left-0 w-full  text-black font-bold text-lg px-4 py-2">
+                     {{ i.title }}
+              </div>
+            {% endif %}
+
+        </a>
+
+
+        
+    {% endfor %}
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="z-[1000] fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center" style="display: none;">
+    <div class="modal-content relative max-w-4xl w-full">
+        <span class="close absolute top-4 right-6 text-4xl font-bold cursor-pointer text-white">×</span>
+        
+        <!-- Prev / Next Buttons -->
+        <button id="prevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 text-3xl text-white font-bold cursor-pointer bg-gray-800 bg-opacity-50 rounded-full p-2 z-50">&lt;</button>
+        <button id="nextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 text-3xl text-white font-bold cursor-pointer bg-gray-800 bg-opacity-50 rounded-full p-2 z-50">&gt;</button>
+
+        <img class="modal-img max-w-full max-h-[80vh] mx-auto block" id="img03" />
+        <div id="caption" class="text-center text-white text-lg mt-4"></div>
+    </div>
+</div>
+
+<script>
+const modal = document.getElementById('myModal');
+const modalImg = document.getElementById('img03');
+const captionText = document.getElementById('caption');
+
+const galleryImages = Array.from(document.querySelectorAll('#gallery img'));
+let currentIndex = 0;
+
+function openModal(index) {
+    currentIndex = index;
+    modal.style.display = 'flex';
+    modalImg.src = galleryImages[currentIndex].src;
+    captionText.innerHTML = galleryImages[currentIndex].alt || 'No caption available';
+}
+
+galleryImages.forEach((img, index) => {
+    img.addEventListener('click', () => openModal(index));
+});
+
+// Close modal
+document.querySelector('.close').addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Click outside modal
+window.addEventListener('click', (event) => {
+    if (event.target === modal) modal.style.display = 'none';
+});
+
+// Next / Prev
+document.getElementById('nextBtn').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    openModal(currentIndex);
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    openModal(currentIndex);
+});
+
+// Optional: Keyboard navigation
+window.addEventListener('keydown', (e) => {
+    if(modal.style.display === 'flex') {
+        if(e.key === 'ArrowRight') document.getElementById('nextBtn').click();
+        if(e.key === 'ArrowLeft') document.getElementById('prevBtn').click();
+        if(e.key === 'Escape') modal.style.display = 'none';
+    }
+});
+</script>
+
+
+<!-- The Modal -->
+<div id="myModal" class="z-[1000] fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center" style="display: none;">
+    <div class="modal-content relative">
+        <span class="close absolute top-4 right-6 text-4xl font-bold cursor-pointer text-black font-bold">×</span>
+        <img class="modal-img max-w-full max-h-[80vh]" id="img03" />
+        <div id="caption" class="text-center text-white text-lg mt-4"></div>
+    </div>
+</div>
+
+<script>
+    
+    const modal = document.getElementById('myModal');
+    const modalImg = document.getElementById('img03');
+    const captionText = document.getElementById('caption');
+
+   
+    const galleryImages = document.querySelectorAll('#gallery img');
+    galleryImages.forEach((img) => {
+        img.addEventListener('click', function () {
+            console.log("Image clicked:", this.src); 
+            modal.style.display = 'flex';  
+            modalImg.src = this.src;  
+            captionText.innerHTML = this.alt || 'No caption available'; 
+        });
+    });
+
+
+    const closeBtn = document.querySelector('.close');
+    closeBtn.addEventListener('click', function () {
+        modal.style.display = 'none';  
+    });
+
+    
+    window.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';  
+        }
+    });
+</script>
+
+</div>
+
+
+
+
+
+{% endblock content %}
+

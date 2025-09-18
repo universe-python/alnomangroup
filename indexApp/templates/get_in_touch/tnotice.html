@@ -1,0 +1,68 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block title %}
+Notice
+{% endblock title %}
+
+{% block content %}
+
+<!-- Margin top -->
+<div class="text-white pt-40" style="background-image: url('{% static 'indexApp/images/company-profile.jpg' %}');">
+    <div class="container mx-auto py-6 px-4">
+      <p class="text-4xl">Notice</p>
+  
+      <p class="pt-5 text-lg"><a href="/">Home</a> > Notice</p>
+    </div>
+</div>
+
+
+{% include 'video_popup.html' %}
+
+<!-- Broucher popup -->
+<div id="headerPopupBroucher" class="mfp-hide embed-responsive embed-responsive-21by9">
+  <iframe src="" width="100%" height="600px" id="iframe-show"></iframe>
+</div>
+
+<div class="container text-purple-800"></div>
+
+<!-- Notice Section -->
+<div class="rs-services style2 mt-5">
+  <div class="animate-text text-center">
+    <h2 class="mt-4 text-4xl font-bold text-transparent bg-gradient-to-r from-red-600 via-green-400 to-blue-600 bg-clip-text">Our Notice</h2>
+    <hr class="mt-2 mb-6 border-t-4 border-teal-500" />
+  </div>
+</div>
+
+<!-- Services Section Start -->
+<div class="rs-services style2 mt-5">
+  <div class="container mx-auto">
+    {% for n in notice %}
+      <div class="wow zoomInUp border-b-2 pb-6 mb-6">
+        <div class="flex justify-between items-center">
+          <div class="flex-1">
+            <p class="text-lg font-semibold">#{{ forloop.counter }} | {{ n.title }}</p>
+          </div>
+          <div class="text-right">
+            <a href="#headerPopupBroucher" id="headerBroucherLink" data-url="{{ n.notice_file.url }}" class="btn btn-primary popup-modal js-modal py-2 px-4  text-white rounded-md bg-color hover:bg-green-700">
+              Download&nbsp;<i class="fa fa-arrow-down"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- Services Section End -->
+
+<script>
+  document.querySelectorAll(".js-modal").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const iframe = document.getElementById("iframe-show");
+      iframe.src = ''; // Clear the iframe src
+      iframe.src = btn.getAttribute("data-url"); // Set the new src from data-url
+    });
+  });
+</script>
+
+{% endblock content %}

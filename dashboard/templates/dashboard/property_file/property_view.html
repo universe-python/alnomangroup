@@ -1,0 +1,139 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+  <div class="content-body">
+    <!-- row -->
+    <!-- row -->
+    <div class="container-fluid">
+      <div class="form-head page-titles d-flex align-items-center">
+        <div class="mr-auto d-lg-block">
+          <h2 class="text-black font-w600">Property View</h2>
+        </div>
+        <div class="mr-start d-lg-block">
+          <a href="{% url 'property_add' %}"><button class="btn btn-primary text-wihit font-w600">Add Property</button></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="table-responsive table-hover fs-14">
+            <table class="table table-hover display mb-4 dataTablesCard card-table" id="example-5">
+              <thead>
+                <tr>
+                  <!--  <th>
+                                    <div class="custom-control custom-checkbox ml-2">
+                                        <input type="checkbox" class="custom-control-input" id="checkAll" required="">
+                                        <label class="custom-control-label" for="checkAll"></label>
+                                    </div>
+                                </th>  -->
+                  <th>Pro. ID</th>
+                  <th>Property Image</th>
+                  <th>Related Image</th>
+                  <th>Price</th>
+                  <th>Post title</th>
+                  <th>Post location</th>
+                  <th>Select project type</th>
+                  <th>Select property type</th>
+                  <th>Select division:</th>
+                  <th>Select district</th>
+                  <th>Select area</th>
+                  <th>Post type</th>
+                  <th>Land size</th>
+                  <th>Bedrooms</th>
+                  <th>Batherooms</th>
+                  <th>Apartment size</th>
+                  <th>Total apartment</th>
+                  <th>Parking area</th>
+                  <th>Parking size</th>
+                  <th>Facing</th>
+                  <th>Lift</th>
+                  <th>Phone</th>
+                  <th>Video link</th>
+                  <th>Broucher</th>
+                  <th>Description</th>
+                  <th>Floor plan image / land layout img</th>
+                  <th>Action</th>
+                </tr>
+
+                <!--  {% for object in fields %}
+                               {{object}}
+                                <th>
+                                {% for fieldname in object %}<td>{{ fieldname }}</td>{% endfor %}
+                                </th>
+                                
+                                <tr>
+                                {% for value in object.values %}<td>{{ value }}</td>{% endfor %}
+                                </tr>
+                            {% endfor %}  -->
+              </thead>
+              <tbody>
+                {% for i in property_views %}
+                  <tr>
+                    <!--  <td>
+                                    <div class="custom-control custom-checkbox ml-2">
+                                        <input type="checkbox" class="custom-control-input" id="customCheckBox5" required="">
+                                        <label class="custom-control-label" for="customCheckBox5"></label>
+                                    </div>
+                                </td>  -->
+
+                    <td>{{ i.id }}</td>
+                    <td>
+                      {% if i.post_pic %}
+                        <img src="{{ i.post_pic.url }}" width="100" height="100" />
+                      {% else %}
+                        none
+                      {% endif %}
+                    </td>
+                    <td>
+                      {% for img in related_images %}
+                        <img src="{{ img.image.url }}" width="100" height="100" />
+                      {% endfor %}
+                    </td>
+                    <td>{{ i.price }}</td>
+                    <td>{{ i.post_title }}</td>
+                    <td>{{ i.post_location }}</td>
+                    <td>{{ i.select_project_type }}</td>
+                    <td>{{ i.select_property_type }}</td>
+                    <td>{{ i.select_division }}</td>
+                    <td>{{ i.select_district }}</td>
+                    <td>select_area</td>
+                    <td>
+                      {% for t in i.post_type.all %}
+                        {{ t.name }}
+                      {% endfor %}
+                    </td>
+                    <td>{{ i.land_size }}</td>
+                    <td>{{ i.bedrooms }}</td>
+                    <td>{{ i.bathrooms }}</td>
+                    <td>{{ i.apartment_size }}</td>
+                    <td>{{ i.total_apartment }}</td>
+                    <td>{{ i.parking_area }}</td>
+                    <td>{{ i.parking_size }}</td>
+                    <td>{{ i.facing }}</td>
+                    <td>{{ i.lift }}</td>
+                    <td>{{ i.phone }}</td>
+                    <td>{{ i.video_link }}</td>
+                    <td>{{ i.broucher }}</td>
+                    <td>{{ i.description }}</td>
+                    <td>
+                      {% if i.floor_plan_image_or_land_layout_img %}
+                        <img src="{{ i.floor_plan_image_or_land_layout_img.url }}" width="100" height="100" />
+                      {% else %}
+                        none
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{% url 'property_edit' i.id %}"><button class="btn btn-primary">Edit</button></a>
+                    </td>
+                    <td>
+                      <a href="{% url 'property_delete' i.id %}"><button class="btn btn-danger">Delete</button></a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

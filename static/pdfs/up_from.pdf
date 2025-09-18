@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Real Estate Booking Application Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      font-size: 14px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-size: 16px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #999;
+      padding-bottom: 4px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .field {
+      margin-bottom: 8px;
+    }
+    .label {
+      font-weight: bold;
+      display: inline-block;
+      width: 220px;
+    }
+    .line {
+      display: inline-block;
+      border-bottom: 1px solid #999;
+      width: 300px;
+      height: 16px;
+    }
+    .checkbox {
+      margin-right: 10px;
+    }
+    .signature-block {
+      margin-top: 40px;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      border-top: 1px solid #999;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Real Estate Booking Application Form</h1>
+
+  <div class="section">
+    <h2>1. Personal Information</h2>
+    <div class="field"><span class="label">Applicant’s Full Name:</span><span class="line"></span></div>
+    <div class="field"><span class="label">Mother's Name:</span><span class="line"></span></div>
+    <div class="field"><span class="label">Date of Birth:</span><span class="line" style="width: 150px;"></span>
+        <span class="label" style="width: 80px;">Nationality:</span><span class="line" style="width: 150px;"></span></div>
+    <div class="field"><span class="label">Religion:</span><span class="line"></span></div>
+    <div class="field"><span class="label">Email:</span><span class="line"></span></div>
+    <div class="field"><span class="label">Permanent Address:</span><span class="line" style="width: 500px;"></span></div>
+  </div>
+
+  <div class="section">
+    <h2>2. Professional Information</h2>
+    <div class="field"><span class="label">Profession:</span><span class="line"></span></div>
+    <div class="field"><span class="label">Designation:</span><span class="line"></span></div>
+    <div class="field"><span class="label">Organization:</span><span class="line"></span></div>
+  </div>
+
+  <div class="section">
+    <h2>3. Project Information</h2>
+    <div class="field">
+      <span class="label">Residence Type:</span>
+      ☐ Resident ☐ Non-Resident ☐ Apartment ☐ Floor
+    </div>
+    <div class="field"><span class="label">Project Location:</span><span class="line" style="width: 400px;"></span></div>
+    <div class="field"><span class="label">Total Price:</span><span class="line" style="width: 100px;"></span>
+      <span class="label" style="width: 120px;">Per Share Price:</span><span class="line" style="width: 100px;"></span></div>
+    <div class="field"><span class="label">Total Project Area:</span><span class="line"></span></div>
+    <div class="field"><span class="label">Number of Shares:</span><span class="line"></span></div>
+    <div class="field"><span class="label">Instruction (if any):</span><span class="line" style="width: 500px;"></span></div>
+  </div>
+
+  <div class="section">
+    <h2>4. Terms & Declaration</h2>
+    <p>
+      I/We hereby declare that the information furnished is true to the best of my/our knowledge. I/We agree to abide by
+      the rules and systems of the company in purchasing the property.
+    </p>
+    <p>
+      I/We agree to become a member of the owner’s association and abide by its rules and regulations.
+    </p>
+    <div class="field">
+      <input type="checkbox" class="checkbox"> I agree to the terms and conditions.
+    </div>
+  </div>
+
+  <div class="signature-block">
+    <div class="field"><span class="label">Customer's Signature:</span><span class="line" style="width: 300px;"></span></div>
+    <div class="field"><span class="label">Date:</span><span class="line" style="width: 150px;"></span></div>
+  </div>
+
+  <div class="footer">
+    Corporate Office: House# 39/C (Siraj Convention Center), 4th Floor, Main Road, Block-C, Aftabnagar, Merul Badda, Dhaka-1212
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,1054 @@
+{% load static %}
+<div class="left-side-menu">
+  <div class="h-100" data-simplebar>
+    <!-- User box -->
+    <div class="user-box text-center">
+      <img src="{% static 'assets/images/users/user-1.jpg' %}" alt="user-img" title="Mat Helme" class="rounded-circle avatar-md" />
+      <div class="dropdown">
+        <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown">Geneva Kennedy</a>
+        <div class="dropdown-menu user-pro-dropdown">
+          <!-- item -->
+          <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <i class="fe-user me-1"></i>
+            <span>My Account</span>
+          </a>
+
+          <!-- item -->
+          <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <i class="fe-settings me-1"></i>
+            <span>Settings</span>
+          </a>
+
+          <!-- item -->
+          <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <i class="fe-lock me-1"></i>
+            <span>Lock Screen</span>
+          </a>
+
+          <!-- item -->
+          <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <i class="fe-log-out me-1"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </div>
+      <p class="text-muted">Admin Head</p>
+    </div>
+
+    <!-- - Sidemenu -->
+    <div id="sidebar-menu">
+      <ul id="side-menu">
+        <!--    <li class="menu-title">Navigation</li>
+    
+                <li>
+                    <a href="#sidebarDashboards" data-bs-toggle="collapse">
+                        <i data-feather="airplay"></i>
+                        <span class="badge bg-success rounded-pill float-end">4</span>
+                        <span> Dashboards </span>
+                    </a>
+                    <div class="collapse" id="sidebarDashboards">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="index.html">Dashboard 1</a>
+                            </li>
+                            <li>
+                                <a href="dashboard-2.html">Dashboard 2</a>
+                            </li>
+                            <li>
+                                <a href="dashboard-3.html">Dashboard 3</a>
+                            </li>
+                            <li>
+                                <a href="dashboard-4.html">Dashboard 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>    -->
+
+        <li class="menu-title mt-2">All Menu</li>
+        <!-- Dashboard -->
+        <li>
+          <a href="{% url 'dashboard' %}">
+            <i class="bi bi-list"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <!-- Property -->
+        <li>
+
+          <a href="#CampingBanner" data-bs-toggle="collapse">
+            <i class="bi bi-house-door"></i>
+            <span>Camping Banner</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="CampingBanner">
+            <ul class="nav-second-level">
+              <li>
+                <div class="collapse" id="CampingBanner">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'add_camping_banners' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'camping_banners' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              
+            </ul>
+          </div>
+          
+
+          <a href="#sidebarProperty" data-bs-toggle="collapse">
+            <i class="bi bi-house-door"></i>
+            <span>Property</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarProperty">
+            <ul class="nav-second-level">
+              <li>
+                <a href="#sidebarProperty1" data-bs-toggle="collapse">Upload Property <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarProperty1">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'PropertyPost-add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'PropertyPost-list' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <a href="#sidebarProperty2" data-bs-toggle="collapse">Property Location<span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarProperty2">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'property_location_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'property_location_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <a href="#sidebarProperty3" data-bs-toggle="collapse">Project Type <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarProperty3">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'project_type_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'project_type_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="#sidebarProperty4" data-bs-toggle="collapse">Property Type <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarProperty4">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'property_type_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'property_type_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <a href="#sidebarProperty5" data-bs-toggle="collapse">Divition <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarProperty5">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'division_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'division_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <a href="#sidebarProperty6" data-bs-toggle="collapse">Distric <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarProperty6">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'district_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'district_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <a href="#sidebarProperty7" data-bs-toggle="collapse">Sub District <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarProperty7">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'subdistrict_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'subdistrict_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Booking -->
+        <li>
+          <a href="#sidebarBooking" data-bs-toggle="collapse">
+            <i class="bi bi-journals"></i>
+            <span>Booking</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarBooking">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'booking_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+
+
+        <!-- Booking From -->
+        <li>
+          <a href="#sidebarBooking" data-bs-toggle="collapse">
+            <i class="bi bi-journals"></i>
+            <span>Booking From</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarBooking">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'bookingfrom_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Booking From Terms-->
+        <li>
+          <a href="#sidebarTerms" data-bs-toggle="collapse">
+            <i class="bi bi-file-earmark-text"></i>
+            <span>Booking From Terms</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarTerms">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'realstate_terms_add' %}">Add Terms</a>
+              </li>
+              <li>
+                <a href="{% url 'realstate_terms_view' %}">View Terms</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+<!-- Booking From Terms Documents-->
+        <li>
+          <a href="#sidebarDocuments" data-bs-toggle="collapse">
+            <i class="bi bi-file-earmark-text"></i>
+            <span>Booking From Documents</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarDocuments">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'document_add' %}">Add Document</a>
+              </li>
+              <li>
+                <a href="{% url 'document_view' %}">View Documents</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+
+
+
+
+
+
+       <!-- Sister Concerns -->
+        <li>
+          <a href="#sidebarSisterConcerns" data-bs-toggle="collapse">
+            <i class="bi bi-building"></i>
+            <span>Sister Concerns</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarSisterConcerns">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'add_sister_concerns_banners' %}">Add Sister Concern Banner</a>
+              </li>
+              <li>
+                <a href="{% url 'sister_concerns_banners' %}">View Sister Concern Banners</a>
+              </li>
+              <li>
+                <a href="{% url 'sister_concerns_add' %}">Add Sister Concern</a>
+              </li>
+              <li>
+                <a href="{% url 'sister_concerns_view' %}">View Sister Concerns</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- About Area -->
+        <li>
+          <a href="#sidebarAboutUs" data-bs-toggle="collapse">
+            <i class="bi bi-file-earmark-person-fill"></i>
+            <span>About Area</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarAboutUs">
+            <ul class="nav-second-level">
+              <li>
+                <a href="#sidebarAboutUs1" data-bs-toggle="collapse">Head Section <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarAboutUs1">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'about_head_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'about_head_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <a href="#sidebarAboutUs2" data-bs-toggle="collapse">Looking Section <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarAboutUs2">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'about_looking_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'about_looking_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <a href="#sidebarAboutUs3" data-bs-toggle="collapse">Testmonial Section <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarAboutUs3">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'about_testimonial_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'about_testimonial_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Banner -->
+        <li>
+          <a href="#sidebarBanner" data-bs-toggle="collapse">
+            <i class="bi bi-images"></i>
+            <span>Banner</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarBanner">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'banner_video_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'banner_video_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Blog -->
+        <li>
+          <a href="#sidebarBlog" data-bs-toggle="collapse">
+            <i class="bi bi-flower2"></i>
+            <span>Blog</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarBlog">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'blog_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'blog_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Counter -->
+        <li>
+          <a href="#sidebarCounter" data-bs-toggle="collapse">
+            <i class="bi bi-arrow-counterclockwise"></i>
+            <span>Counter</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarCounter">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'counter_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'counter_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Feedback -->
+        <li>
+          <a href="#sidebarFeedback" data-bs-toggle="collapse">
+            <i class="bi bi-rss"></i>
+            <span>Feedback</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarFeedback">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'feedback_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- FAQ -->
+        <li>
+          <a href="#sidebarFAQ" data-bs-toggle="collapse">
+            <i class="bi bi-question-square"></i>
+            <span>FAQ</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarFAQ">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'faq_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'faq_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- missionvision -->
+        <li>
+          <a href="#sidebarmissionvision" data-bs-toggle="collapse">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-walking" viewBox="0 0 16 16">
+              <path d="M9.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M6.44 3.752A.75.75 0 0 1 7 3.5h1.445c.742 0 1.32.643 1.243 1.38l-.43 4.083a1.8 1.8 0 0 1-.088.395l-.318.906.213.242a.8.8 0 0 1 .114.175l2 4.25a.75.75 0 1 1-1.357.638l-1.956-4.154-1.68-1.921A.75.75 0 0 1 6 8.96l.138-2.613-.435.489-.464 2.786a.75.75 0 1 1-1.48-.246l.5-3a.75.75 0 0 1 .18-.375l2-2.25Z"/>
+              <path d="M6.25 11.745v-1.418l1.204 1.375.261.524a.8.8 0 0 1-.12.231l-2.5 3.25a.75.75 0 1 1-1.19-.914zm4.22-4.215-.494-.494.205-1.843.006-.067 1.124 1.124h1.44a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.531-.22Z"/>
+            </svg>
+            <span>Mission Vision</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarmissionvision">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'missionvision_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'missionvision_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- MD Message -->
+        <li>
+          <a href="#sidebarmd_message" data-bs-toggle="collapse">
+           <i class="bi bi-chat-dots"></i>
+
+
+            <span>MD Message</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarmd_message">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'md_message_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'md_message_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Social Responsibility -->
+        {% comment %} <li>
+          <a href="#sidebarsocial_responsibility" data-bs-toggle="collapse">
+            <i class="bi bi-info-lg"></i>
+            <span>Social Responsibility</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarsocial_responsibility">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'social_responsibility_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'social_responsibility_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li> {% endcomment %}
+        <!-- Testimonial -->
+        <li>
+          <a href="#sidebartestimonial" data-bs-toggle="collapse">
+            <i class="bi bi-info-lg"></i>
+            <span>Testimonial</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebartestimonial">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'testimonial_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'testimonial_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <a href="#sidebarprivacy" data-bs-toggle="collapse">
+            <i class="bi bi-info-lg"></i>
+            <span>Privacy</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarprivacy">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'privacy_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'privacy_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Awards -->
+        <li>
+          <a href="#sidebarawards" data-bs-toggle="collapse">
+            <i class="bi bi-info-lg"></i>
+            <span>Awards</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarawards">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'awards_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'awards_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Land Wanted -->
+        <li>
+          <a href="#sidebarland_wanted" data-bs-toggle="collapse">
+            <i class="bi bi-info-lg"></i>
+            <span>Land Wanted</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarland_wanted">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'land_wanted_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'land_wanted_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Corparate Structure -->
+        <li>
+          <a href="#sidebarcorparate_structure" data-bs-toggle="collapse">
+            <i class="bi bi-info-lg"></i>
+            <span>Corparate Structure</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarcorparate_structure">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'corparate_structure_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'corparate_structure_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Our Certificate -->
+        <li>
+          <a href="#sidebarour_certificate" data-bs-toggle="collapse">
+            <i class="bi bi-info-lg"></i>
+            <span>Our Certificate</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarour_certificate">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'our_certificate_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'our_certificate_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- News letter -->
+        <li>
+          <a href="#sidebarnewsletter" data-bs-toggle="collapse">
+            <i class="bi bi-info-lg"></i>
+            <span>News letter</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarnewsletter">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'newsletter_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'newsletter_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Cup of Coffee -->
+        <li>
+          <a href="#sidebarcup_of_coffee" data-bs-toggle="collapse">
+            <i class="bi bi-info-lg"></i>
+            <span>Cup of Coffee</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarcup_of_coffee">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'cup_of_coffee_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'cup_of_coffee_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Gallery -->
+        {% comment %} <li>
+          <a href="#sidebarGallery" data-bs-toggle="collapse">
+            <i class="bi bi-images"></i>
+            <span>Gallery</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarGallery">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'gallery_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'gallery_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li> {% endcomment %}
+        <!-- Get In Touch -->
+        <li>
+          <a href="#sidebarGetInTouch" data-bs-toggle="collapse">
+            <i class="bi bi-images"></i>
+            <span>Gallery</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarGetInTouch">
+            <ul class="nav-second-level">
+              <li>
+                <a href="#sidebaralbum" data-bs-toggle="collapse">Album <span class="bi bi-chevron-double-right"></span></a>
+                
+                <div class="collapse" id="sidebaralbum">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'album_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'album_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="#sidebarGallery" data-bs-toggle="collapse">Photo <span class="bi bi-chevron-double-right"></span></a>
+                
+                <div class="collapse" id="sidebarGallery">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'gallery_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'gallery_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <a href="#sidebarGetInTouch2" data-bs-toggle="collapse">Video <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarGetInTouch2">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'video_galary_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'video_galary_view' %}">View</a>
+                    </li>
+                   
+                  </ul>
+                </div>
+              </li>
+
+              
+             
+             
+            </ul>
+          </div>
+        </li>
+        <!-- Get In Touch -->
+        <li>
+          <a href="#sidebarGetInTouch" data-bs-toggle="collapse">
+            <i class="bi bi-bullseye"></i>
+            <span>Get In Touch</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarGetInTouch">
+            <ul class="nav-second-level">
+              <li>
+                <a href="#sidebarGetInTouch1" data-bs-toggle="collapse">CSR <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarGetInTouch1">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'csr_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'csr_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <a href="#sidebarGetInTouch2" data-bs-toggle="collapse">Career <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarGetInTouch2">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'career_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'career_view' %}">View</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'job_application_view' %}">View Job Application</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <a href="#sidebarGetInTouch3" data-bs-toggle="collapse">Our Team <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarGetInTouch3">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'team_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'team_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="#sidebarGetInTouch4" data-bs-toggle="collapse">Notice <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarGetInTouch4">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'notice_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'notice_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="#sidebarGetInTouch5" data-bs-toggle="collapse">Contact <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarGetInTouch5">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'contact_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Super User -->
+        {% if request.user.is_superuser %}
+          <li>
+            <a href="#sidebarSuperuser" data-bs-toggle="collapse">
+              <i class="bi bi-person-check"></i>
+              <span>Super User</span>
+              <span class="bi bi-chevron-double-right"></span>
+            </a>
+            <div class="collapse" id="sidebarSuperuser">
+              <ul class="nav-second-level">
+                <li>
+                  <a href="{% url 'register' %}">Creat User</a>
+                </li>
+                <li>
+                  <a href="{% url 'register_view' %}">User List</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        {% endif %}
+        <!-- Service -->
+        <li>
+          <a href="#sidebarService" data-bs-toggle="collapse">
+            <i class="bi bi-sliders"></i>
+            <span>Service</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarService">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'service_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'service_view' %}">View</a>
+              </li>
+              <li>
+                <a href="#sidebarService1" data-bs-toggle="collapse">Service Type <span class="bi bi-chevron-double-right"></span></a>
+                <div class="collapse" id="sidebarService1">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{% url 'service_type_add' %}">Add</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'service_type_view' %}">View</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Social Link -->
+        <li>
+          <a href="#sidebarSocialLink" data-bs-toggle="collapse">
+            <i class="bi bi-microsoft-teams"></i>
+            <span>Social Link</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarSocialLink">
+            <ul class="nav-second-level">
+              {% comment %} <li>
+                <a href="{% url 'social_link_add' %}">Add</a>
+              </li> {% endcomment %}
+              <li>
+                <a href="{% url 'social_link_view' %}">View & Edit</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- website Info -->
+        <li>
+          <a href="#sidebarAdmin" data-bs-toggle="collapse">
+            <i data-feather="users"></i>
+            <span>Website Info</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarAdmin">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'admin_profile_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'admin_profile_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- Why Choose Us -->
+        <li>
+          <a href="#sidebarWhyChooseUs" data-bs-toggle="collapse">
+            <i class="bi bi-basket"></i>
+            <span>Why Choose Us</span>
+            <span class="bi bi-chevron-double-right"></span>
+          </a>
+          <div class="collapse" id="sidebarWhyChooseUs">
+            <ul class="nav-second-level">
+              <li>
+                <a href="{% url 'why_choose_us_add' %}">Add</a>
+              </li>
+              <li>
+                <a href="{% url 'why_choose_us_view' %}">View</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <!--    
+                <li>
+                    <a href="#sidebarForms" data-bs-toggle="collapse">
+                        <i data-feather="bookmark"></i>
+                        <span> Forms </span>
+                        <span class="bi bi-chevron-double-right"></span>
+                    </a>
+                    <div class="collapse" id="sidebarForms">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="forms-elements.html">General Elements</a>
+                            </li>
+                            <li>
+                                <a href="forms-advanced.html">Advanced</a>
+                            </li>
+                            <li>
+                                <a href="forms-validation.html">Validation</a>
+                            </li>
+                            <li>
+                                <a href="forms-pickers.html">Pickers</a>
+                            </li>
+                            <li>
+                                <a href="forms-wizard.html">Wizard</a>
+                            </li>
+                            <li>
+                                <a href="forms-masks.html">Masks</a>
+                            </li>
+                            <li>
+                                <a href="forms-quilljs.html">Quilljs Editor</a>
+                            </li>
+                            <li>
+                                <a href="forms-file-uploads.html">File Uploads</a>
+                            </li>
+                            <li>
+                                <a href="forms-x-editable.html">X Editable</a>
+                            </li>
+                            <li>
+                                <a href="forms-image-crop.html">Image Crop</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#sidebarTables" data-bs-toggle="collapse">
+                        <i data-feather="grid"></i>
+                        <span> Tables </span>
+                        <span class="bi bi-chevron-double-right"></span>
+                    </a>
+                    <div class="collapse" id="sidebarTables">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="tables-basic.html">Basic Tables</a>
+                            </li>
+                            <li>
+                                <a href="tables-datatables.html">Data Tables</a>
+                            </li>
+                            <li>
+                                <a href="tables-editable.html">Editable Tables</a>
+                            </li>
+                            <li>
+                                <a href="tables-responsive.html">Responsive Tables</a>
+                            </li>
+                            <li>
+                                <a href="tables-footables.html">FooTable</a>
+                            </li>
+                            <li>
+                                <a href="tables-bootstrap.html">Bootstrap Tables</a>
+                            </li>
+                            <li>
+                                <a href="tables-tablesaw.html">Tablesaw Tables</a>
+                            </li>
+                            <li>
+                                <a href="tables-jsgrid.html">JsGrid Tables</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#sidebarMultilevel" data-bs-toggle="collapse">
+                        <i data-feather="share-2"></i>
+                        <span> Multi Level </span>
+                        <span class="bi bi-chevron-double-right"></span>
+                    </a>
+                    <div class="collapse" id="sidebarMultilevel">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="#sidebarMultilevel2" data-bs-toggle="collapse">
+                                    Second Level <span class="bi bi-chevron-double-right"></span>
+                                </a>
+                                <div class="collapse" id="sidebarMultilevel2">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="javascript: void(0);">Item 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript: void(0);">Item 2</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="#sidebarMultilevel3" data-bs-toggle="collapse">
+                                    Third Level <span class="bi bi-chevron-double-right"></span>
+                                </a>
+                                <div class="collapse" id="sidebarMultilevel3">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="javascript: void(0);">Item 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#sidebarMultilevel4" data-bs-toggle="collapse">
+                                                Item 2 <span class="bi bi-chevron-double-right"></span>
+                                            </a>
+                                            <div class="collapse" id="sidebarMultilevel4">
+                                                <ul class="nav-second-level">
+                                                    <li>
+                                                        <a href="javascript: void(0);">Item 1</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript: void(0);">Item 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>    -->
+      </ul>
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="clearfix"></div>
+  </div>
+  <!-- Sidebar -left -->
+</div>

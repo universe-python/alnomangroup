@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+About
+{% endblock title %}
+
+{% block content %}
+
+<!-- Sub banner start -->
+<!-- <div class="sub-banner">
+    <div class="overlay">
+        <div class="container">
+            <div class="breadcrumb-area">
+                <h1>About Us</h1>
+                <ul class="breadcrumbs">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">About Us</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- Sub Banner end -->
+
+<!-- Margin top -->
+<div class="marginT50 d-block d-md-none"></div>
+
+<!-- About real estate start -->
+<div class="about-real-estate-2">
+    <div class="container">
+        {% for about in about_query %}
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="about-img-section">
+                    <div class="image-box sssa">
+                        <div class="image-1">
+                            {% if about.main_image %}
+                                <img src="{{ about.main_image.url }}" class="w-100" alt="photo">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="about-box-Experience">
+                        {% if about.shadow_image %}
+                        <img src="{{ about.shadow_image.url }}" alt="image" class="img-fluid">
+                        {% endif %}
+                        <div class="content">
+                            <h3>{{about.experience_year}}+</h3>
+                            <p class="mb-0">Years of Experience</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 align-self-center">
+                <div class="about-text clearfix">
+                    <h1>{{about.title}}</h1>
+                    <p>{{about.description}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- About real estate end -->
+
+<!-- Our service start -->
+<div class="our-service content-area-11">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title text-center">
+            <h1>What Are You Looking For</h1>
+            <hr style="background-color: #199388;">
+        </div>
+        <div class="row">
+            {% for LookingSection in LookingSections %}
+            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                <div class="service-info-1">
+                    <i class="flaticon-apartment"></i>
+                    <h3>{{LookingSection.title}}</h3>
+                    <p>{{LookingSection.description}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Our service end -->
+
+<!-- Testimonial 3 section start-->
+<div class="testimonials-3 content-area-7 comon-slick">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title main-title-5">
+            <h1>Our Testimonial</h1>
+           
+        </div>
+            <div class="slick row comon-slick-inner" data-slick='{"slidesToShow": 2, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 1}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                {% for testimotial in about_testimotial %}
+                <div class="item slide-box">
+                    <div class="testimonials-inner">
+                        <div class="user">
+                            <a href="#">
+                                <img class="media-object" src="{{ testimotial.image.url}}" alt="user">
+                            </a>
+                        </div>
+                        <div class="testimonial-info">
+                            <h3>
+                                {{ testimotial.name}}
+                            </h3>
+                            <p>{{ testimotial.designation}}</p>
+                            <p>{{testimotial.short_description}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+    </div>
+</div>
+<!-- Testimonial 3 end -->
+
+
+
+{% endblock content %}
