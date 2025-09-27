@@ -21,14 +21,22 @@ MD Message Edit
     </div>
     <div class="row">
       {% load crispy_forms_tags %}
-      <form method="post" enctype="multipart/form-data">
+      <!-- <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}
         <fieldset disabled>
           {{ form|crispy }}
         </fieldset>
         <a href="{% url 'md_message_view' %}" class="btn btn-secondary">Back</a>
-      </form>
+      </form> -->
+
+      <form method="post" enctype="multipart/form-data" action="">
+  {% csrf_token %}
+  {{ form.media }}
+  {{ form|crispy }}
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
 
     </div>
   </div>
